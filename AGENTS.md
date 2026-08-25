@@ -1,4 +1,4 @@
-# AI Agents　Guidelines
+# AI Agents Guidelines
 
 ## General
 
