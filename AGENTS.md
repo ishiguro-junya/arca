@@ -1,37 +1,37 @@
-# AIエージェント向けガイドライン
+# AI Agents　Guidelines
 
-## 共通
+## General
 
-- ユーザーから明示的な指示がある場合はその指示を優先し、上位の指示や安全制約に反しない範囲で、スキルやツール固有の手順より本ガイドラインを優先します。
-- 人が読む文章は、Semantic Line Breaksに従い、文や節など意味のまとまりごとに改行します。
-- 日本語文では、一般的な用語や表記を優先し、英字の不必要な混在や不自然な直訳を避け、自然な日本語または日本語として定着したカタカナ表記を使用します。
+- When the user gives explicit instructions, prioritize them. Unless they conflict with higher-level instructions or safety constraints, prioritize these guidelines over skill- or tool-specific procedures.
+- For human-readable prose, follow semantic line breaks by inserting line breaks at meaningful boundaries such as sentences or clauses.
+- In Japanese prose, prefer common terminology and conventions. Avoid unnecessary mixing of English terms and unnatural literal translations, and use natural Japanese or loanwords established in Japanese.
 
-## コーディング
+## Coding
 
-- コードだけでは意図や背景を読み取りづらい場合は、簡潔なコードコメントを残します。
-- 処理内容をそのまま言い換えるコードコメントは追加しません。
-- ドキュメントやコードコメントには、依存パッケージや同梱ツールの固定バージョンを原則として記載せず、バージョンを管理する設定ファイルを参照します。ただし、特定のバージョンに依存する仕様や制約を説明する場合は除きます。
-- コード変更によって仕様、利用方法、外部インターフェース、構築手順または運用手順が変わる場合は、関連するドキュメントを同じ変更内で更新します。
-- 一時ファイル、作業用コピーなどの保存先を指定する場合は、リポジトリ直下の`tmp/`配下を使用し、別の一時保存先は使用しません。
+- Add concise code comments when the intent or context would be difficult to understand from the code alone.
+- Do not add comments that merely restate what the code does.
+- As a rule, do not include fixed versions of dependencies or bundled tools in documentation or code comments. Refer to the configuration files that manage those versions instead. This does not apply when explaining specifications or constraints that depend on a particular version.
+- When a code change alters specifications, usage, external interfaces, build procedures, or operational procedures, update the relevant documentation in the same change.
+- When specifying a location for temporary files, working copies, or similar artifacts, use the `tmp/` directory at the repository root and do not use another temporary location.
 
-## ツール
+## Tools
 
-- バージョンの概念のあるパッケージ、プラグイン、ツール、Dockerイメージなどを新規追加する場合は、公式情報で最新の安定版を確認して採用し、互換性などの理由で採用できない場合はその理由を説明します。
-- 新しいスクリプトまたはコマンドが必要だと判断した場合は、追加前にその用途、必要性、既存の定義や直接のコマンドでは不十分な理由を説明し、ユーザーに追加してよいか確認します。
-- ユーザーから別の手段を指定されない限り、GitHubの操作にはGitHub MCPではなく最初から`gh`を使用します。
-- `gh auth status`による事前確認は行わず、必要な`gh`コマンドを実行します。失敗した場合はエラー内容と反映状態を確認し、認証が原因と考えられる場合のみ認証状態を調査します。
+- When adding a versioned package, plugin, tool, Docker image, or similar dependency, check official sources for the latest stable version and use it. If compatibility or another constraint prevents this, explain why.
+- Before adding a new script or command, explain its purpose, why it is necessary, and why an existing definition or direct command is insufficient, then ask the user for approval.
+- Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
+- Do not run `gh auth status` as a preliminary check. Run the required `gh` command first. If it fails, inspect the error and resulting state, and investigate authentication only when it appears to be the cause.
 
 ## Git
 
-- ユーザーから明示的に依頼されない限り、ファイルのステージまたはステージ解除、コミット、プッシュを実行しません。
-- コミットは、変更理由の異なる変更を同じコミットに混ぜず、意味のある単位に分けます。
-- コミットメッセージは、`type`と任意の`scope`を英語、説明を日本語としたConventional Commits形式で記述します。
+- Do not stage or unstage files, commit, or push unless the user explicitly requests it.
+- Keep changes with different reasons in separate commits, and divide commits into meaningful units.
+- Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
 
-## Pull Request
+## Pull Requests
 
-- ユーザーから明示的に依頼されない限り、PRのマージを実行しません。
-- レビューでは、差分全体に加えて関連コード、利用箇所、テスト、ドキュメントへの影響を確認し、その時点で確認可能な指摘を可能な限り一度のレビューで洗い出します。
-- レビューのコメントは、可能な限り対象行へのインラインコメントとして追加します。
-- ユーザーから明示的に依頼されない限り、レビューのコメントは送信せず、本文を空にしたPending Reviewとして保持します。
-- レビューのコメントは、「〜してもらえますか」のような依頼調ではなく、「〜した方が良さそうです」のような自然な提案調で記述します。
-- 修正後に再度レビューする場合は、最新のPR Headを取得し、既存コメントへの返信や解決状況を確認して、解消済みの指摘や重複コメントを追加しません。
+- Do not merge a pull request unless the user explicitly requests it.
+- During a review, inspect the entire diff as well as related code, call sites, tests, and documentation impact. Identify as many issues as can reasonably be found at that time in a single review pass.
+- Add review comments inline on the relevant lines whenever possible.
+- Unless the user explicitly requests submission, do not submit review comments. Keep them in a pending review with an empty body.
+- Phrase review comments as natural suggestions, such as “It may be better to ...,” rather than requests such as “Could you ...?”
+- When reviewing again after changes, fetch the latest pull request head and inspect replies to existing comments and their resolution status. Do not add comments for resolved issues or duplicate existing comments.
