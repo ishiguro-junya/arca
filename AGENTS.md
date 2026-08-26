@@ -3,7 +3,9 @@
 ## General
 
 - When the user gives explicit instructions, prioritize them. Unless they conflict with higher-level instructions or safety constraints, prioritize these guidelines over skill- or tool-specific procedures.
-- For human-readable prose, follow semantic line breaks by inserting line breaks at meaningful boundaries such as sentences or clauses.
+- In human-readable prose, put each sentence on its own line and do not insert line breaks within a sentence.
+- Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
+- Do not use the section sign (`U+00A7`) in human-readable prose.
 - In Japanese prose, prefer common terminology and conventions. Avoid unnecessary mixing of English terms and unnatural literal translations, and use natural Japanese or loanwords established in Japanese.
 
 ## Coding
