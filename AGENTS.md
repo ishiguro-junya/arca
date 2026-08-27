@@ -25,6 +25,7 @@
 
 ## Git
 
+- Before modifying the code, please create a working branch based on an up-to-date base branch.
 - Do not stage or unstage files, commit, or push unless the user explicitly requests it.
 - Keep changes with different reasons in separate commits, and divide commits into meaningful units.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
@@ -33,6 +34,7 @@
 
 - Do not merge a pull request unless the user explicitly requests it.
 - During a review, inspect the entire diff as well as related code, call sites, tests, and documentation impact. Identify as many issues as can reasonably be found at that time in a single review pass.
+- Before writing any review comments, present the findings to the user and obtain explicit approval to post them.
 - Add review comments inline on the relevant lines whenever possible.
 - Unless the user explicitly requests submission, do not submit review comments. Keep them in a pending review with an empty body.
 - Phrase review comments as natural suggestions, such as “It may be better to ...,” rather than requests such as “Could you ...?”
