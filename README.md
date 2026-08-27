@@ -280,6 +280,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 ## 🔗 Reference
 
 - [front-end-frameworks](https://2025.stateofjs.com/en-US/libraries/front-end-frameworks/)
+- [skills.sh](https://www.skills.sh/)
 
 ## ⚖️ Licence
 
