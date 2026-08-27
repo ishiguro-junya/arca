@@ -34,9 +34,9 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 ## 🧩 Plugin
 
 - [Agent Toolkit for AWS](https://github.com/aws/agent-toolkit-for-aws)
-- [AWS Agents for DevSecOps](https://github.com/aws/agent-toolkit-for-aws/tree/main/plugins/aws-agents-for-devsecops)
 - [Azure Skills](https://github.com/microsoft/azure-skills)
 - [Azure DevOps](https://azure.microsoft.com/products/devops/)
+- [Google Cloud Well-Architected](https://github.com/google/skills/tree/main/plugins/cloud/google-cloud-well-architected)
 - [Modern Go Guidelines](https://github.com/JetBrains/go-modern-guidelines)
 - [Ponytail](https://github.com/DietrichGebert/ponytail)
 - [OpenAI](https://github.com/openai/plugins)
@@ -57,7 +57,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [eli5](https://github.com/anthropics/claude-plugins-community/tree/main/eli5/skills/eli5)
 - [find-skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills)
 - [gh-stack](https://github.com/github/gh-stack/tree/main/skills/gh-stack)
-- [google/skills](https://github.com/google/skills)
+- [google-cloud-solution-multi-agent-security](https://github.com/google/skills/tree/main/skills/cloud/google-cloud-solution-multi-agent-security)
 - [hallmark](https://github.com/Nutlope/hallmark/tree/main/skills/hallmark)
 - [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills/tree/main/plugins/terraform/skills)
 - [humanizer](https://github.com/blader/humanizer)
@@ -70,7 +70,6 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp)
 - [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop)
 - [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills)
-- [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills)
 
 ## 🔌 MCP
 
