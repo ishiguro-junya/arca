@@ -26,7 +26,7 @@
 
 ## Git
 
-- Before modifying the code, please create a working branch based on an up-to-date base branch.
+- Before modifying code on a base branch, ask the user whether to create a working branch.
 - Do not stage or unstage files, commit, or push unless the user explicitly requests it.
 - Keep changes with different reasons in separate commits, and divide commits into meaningful units.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
