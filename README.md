@@ -128,6 +128,10 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [React Hook Form](https://react-hook-form.com/)
 - [TanStack Form](https://tanstack.com/form/latest)
 
+## 📑 Markdown
+
+- [TanStack Markdown](https://tanstack.com/markdown/latest)
+
 ## ✅ Validate
 
 - [Valibot](https://valibot.dev/)
