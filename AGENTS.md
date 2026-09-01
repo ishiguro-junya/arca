@@ -8,6 +8,11 @@
 - Do not use the section sign (`U+00A7`) in human-readable prose.
 - In Japanese prose, prefer common terminology and conventions. Avoid unnecessary mixing of English terms and unnatural literal translations, and use natural Japanese or loanwords established in Japanese.
 
+## Planning
+
+- When revising a plan, rewrite it as a self-contained final plan that appears to have been designed from the outset.
+- Assume the reader is a new participant with no knowledge of the conversation or earlier plan versions. Include only information needed to implement the final design, and omit revision history, superseded decisions, rejected alternatives, and change-relative statements.
+
 ## Coding
 
 - Add concise code comments when the intent or context would be difficult to understand from the code alone.
