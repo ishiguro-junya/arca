@@ -20,31 +20,31 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 ## 🤖 AI Agent
 
-- [Claude Code](https://www.anthropic.com/claude-code)
+- [Claude Code](https://www.anthropic.com/claude-code/)
 - [Codex](https://openai.com/codex/)
 
 ## 🚪 AI Gateway
 
-- [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/overview)
+- [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/overview/)
 - [Cloudflare AI Gateway](https://developers.cloudflare.com/ai-gateway/)
 - [LiteLLM](https://docs.litellm.ai/)
 - [OpenAI API](https://developers.openai.com/)
-- [Vercel AI Gateway](https://vercel.com/ai-gateway)
+- [Vercel AI Gateway](https://vercel.com/ai-gateway/)
 
 ## 🧩 Plugin
 
-- [Agent Toolkit for AWS](https://github.com/aws/agent-toolkit-for-aws)
-- [Azure Skills](https://github.com/microsoft/azure-skills)
+- [Agent Toolkit for AWS](https://github.com/aws/agent-toolkit-for-aws/)
+- [Azure Skills](https://github.com/microsoft/azure-skills/)
 - [Azure DevOps](https://azure.microsoft.com/products/devops/)
-- [Google Cloud Well-Architected](https://github.com/google/skills/tree/main/plugins/cloud/google-cloud-well-architected)
-- [Modern Go Guidelines](https://github.com/JetBrains/go-modern-guidelines)
-- [Ponytail](https://github.com/DietrichGebert/ponytail)
-- [OpenAI](https://github.com/openai/plugins)
-- [Notion](https://github.com/openai/plugins/tree/main/plugins/notion)
-- [Vercel](https://github.com/vercel/vercel-plugin)
+- [Google Cloud Well-Architected](https://github.com/google/skills/tree/main/plugins/cloud/google-cloud-well-architected/)
+- [Modern Go Guidelines](https://github.com/JetBrains/go-modern-guidelines/)
+- [Ponytail](https://github.com/DietrichGebert/ponytail/)
+- [OpenAI](https://github.com/openai/plugins/)
+- [Notion](https://github.com/openai/plugins/tree/main/plugins/notion/)
+- [Vercel](https://github.com/vercel/vercel-plugin/)
 - [Data](https://openai.com/business/plugins/data/)
 - [Product Design](https://openai.com/business/plugins/product-design/)
-- [tl;dv](https://chatgpt.com/plugins/plugin_asdk_app_69bca4c1b4f48191b616c7ab063eb17a)
+- [tl;dv](https://chatgpt.com/plugins/plugin_asdk_app_69bca4c1b4f48191b616c7ab063eb17a/)
 
 ## ⚡️ Skill
 
@@ -52,31 +52,31 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 > Anthropic's `pdf` and `skill-creator` are excluded because they conflict with built-in skills.  
 > Custom skills from private repositories are excluded from this list.  
 
-- [anthropics/skills](https://github.com/anthropics/skills)
-- [diagram-design](https://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design)
-- [eli5](https://github.com/anthropics/claude-plugins-community/tree/main/eli5/skills/eli5)
-- [find-skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills)
-- [gh-stack](https://github.com/github/gh-stack/tree/main/skills/gh-stack)
-- [google-cloud-solution-multi-agent-security](https://github.com/google/skills/tree/main/skills/cloud/google-cloud-solution-multi-agent-security)
-- [hallmark](https://github.com/Nutlope/hallmark/tree/main/skills/hallmark)
-- [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills/tree/main/plugins/terraform/skills)
-- [humanizer](https://github.com/blader/humanizer)
-- [mattpocock/skills](https://github.com/mattpocock/skills)
-- [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese)
-- [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop)
-- [openai/skills](https://github.com/openai/skills)
-- [show-me](https://github.com/humanlayer/skills/tree/main/plugins/show-me/skills/show-me)
-- [skill-doctor](https://github.com/warpdotdev/common-skills/tree/main/.agents/skills/skill-doctor)
-- [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp)
-- [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop)
-- [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills)
+- [anthropics/skills](https://github.com/anthropics/skills/)
+- [diagram-design](https://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design/)
+- [eli5](https://github.com/anthropics/claude-plugins-community/tree/main/eli5/skills/eli5/)
+- [find-skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills/)
+- [gh-stack](https://github.com/github/gh-stack/tree/main/skills/gh-stack/)
+- [google-cloud-solution-multi-agent-security](https://github.com/google/skills/tree/main/skills/cloud/google-cloud-solution-multi-agent-security/)
+- [hallmark](https://github.com/Nutlope/hallmark/tree/main/skills/hallmark/)
+- [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills/tree/main/plugins/terraform/skills/)
+- [humanizer](https://github.com/blader/humanizer/)
+- [mattpocock/skills](https://github.com/mattpocock/skills/)
+- [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese/)
+- [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop/)
+- [openai/skills](https://github.com/openai/skills/)
+- [show-me](https://github.com/humanlayer/skills/tree/main/plugins/show-me/skills/show-me/)
+- [skill-doctor](https://github.com/warpdotdev/common-skills/tree/main/.agents/skills/skill-doctor/)
+- [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp/)
+- [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop/)
+- [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills/)
 
 ## 🔌 MCP
 
-- [draw.io MCP](https://github.com/jgraph/drawio-mcp)
-- [Next.js DevTools MCP](https://github.com/vercel/next-devtools-mcp)
-- [OpenAI Developer Docs MCP](https://developers.openai.com/mcp)
-- [shadcn MCP](https://ui.shadcn.com/docs/mcp)
+- [draw.io MCP](https://github.com/jgraph/drawio-mcp/)
+- [Next.js DevTools MCP](https://github.com/vercel/next-devtools-mcp/)
+- [OpenAI Developer Docs MCP](https://developers.openai.com/mcp/)
+- [shadcn MCP](https://ui.shadcn.com/docs/mcp/)
 
 ## 💻 Programming Language
 
@@ -99,7 +99,6 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Flask](https://flask.palletsprojects.com/)
 - [Hono](https://hono.dev/)
-- [Laravel](https://laravel.com/)
 - [NestJS](https://nestjs.com/)
 - [Next.js](https://nextjs.org/)
 - [Nuxt](https://nuxt.com/)
@@ -114,23 +113,22 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [React](https://react.dev/)
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [TanStack Query](https://tanstack.com/query/latest)
+- [TanStack Query](https://tanstack.com/query/latest/)
 - [v0](https://v0.dev/)
 
 ## 🧠 State Management
 
 - [Jotai](https://jotai.org/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Zustand](https://zustand.docs.pmnd.rs/)
 
 ## 📝 Form
 
 - [React Hook Form](https://react-hook-form.com/)
-- [TanStack Form](https://tanstack.com/form/latest)
+- [TanStack Form](https://tanstack.com/form/latest/)
 
 ## 📑 Markdown
 
-- [TanStack Markdown](https://tanstack.com/markdown/latest)
+- [TanStack Markdown](https://tanstack.com/markdown/latest/)
 
 ## ✅ Validate
 
@@ -144,7 +142,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [Three.js](https://threejs.org/)
 - [WebGL](https://www.khronos.org/webgl/)
 - [wgpu](https://wgpu.rs/)
-- [winit](https://github.com/rust-windowing/winit)
+- [winit](https://github.com/rust-windowing/winit/)
 
 ## 🎞️ Animation
 
@@ -156,7 +154,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 - [Font Awesome](https://fontawesome.com/)
 - [Lucide](https://lucide.dev/)
-- [Material Design Icons](https://developers.google.com/fonts/docs/material_icons)
+- [Material Design Icons](https://developers.google.com/fonts/docs/material_icons/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [SVGR](https://react-svgr.com/)
 
@@ -164,12 +162,12 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 - [Fontsource](https://fontsource.org/)
 - [Inter](https://rsms.me/inter/)
-- [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto%2BSans%2BJP)
+- [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto%2BSans%2BJP/)
 
 ## 📄 PDF
 
-- [@embedpdf/react-pdf-viewer](https://www.embedpdf.com/react-pdf-viewer)
-- [react-to-print](https://github.com/MatthewHerbst/react-to-print)
+- [@embedpdf/react-pdf-viewer](https://www.embedpdf.com/react-pdf-viewer/)
+- [react-to-print](https://github.com/MatthewHerbst/react-to-print/)
 
 ## 🗄️ Database
 
@@ -184,13 +182,13 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 ## 🌐 Network
 
 - [HTTPX](https://www.python-httpx.org/)
-- [Portless](https://github.com/vercel-labs/portless)
-- [Tailscale](https://tailscale.com/)
+- [Portless](https://github.com/vercel-labs/portless/)
+- [Tailscale](https://github.com/tailscale/tailcat/)
 
 ## 🌍 Web Server
 
 - [Apache HTTP Server](https://httpd.apache.org/)
-- [LiteSpeed Web Server](https://www.litespeedtech.com/products/litespeed-web-server)
+- [LiteSpeed Web Server](https://www.litespeedtech.com/products/litespeed-web-server/)
 - [nginx](https://nginx.org/)
 
 ## ✉️ Email
@@ -201,7 +199,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 ## 🧪 Testing
 
-- [agent-browser](https://github.com/vercel-labs/agent-browser)
+- [agent-browser](https://github.com/vercel-labs/agent-browser/)
 - [MSW](https://mswjs.io/)
 - [Playwright](https://playwright.dev/)
 - [Poppler](https://poppler.freedesktop.org/)
@@ -227,7 +225,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [Git](https://git-scm.com/)
 - [GitHub CLI](https://cli.github.com/)
 - [Sourcetree](https://www.sourcetreeapp.com/)
-- [Stella](https://github.com/ishiguro-junya/stella)
+- [Stella](https://github.com/ishiguro-junya/stella/)
 
 ## ✨ Code Quality
 
@@ -235,12 +233,12 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [Cocogitto](https://docs.cocogitto.io/)
 - [Knip](https://knip.dev/)
 - [Lychee](https://lychee.cli.rs/)
-- [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2)
+- [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2/)
 - [Oxc](https://oxc.rs/)
 - [Ruff](https://docs.astral.sh/ruff/)
 - [textlint](https://textlint.github.io/)
-- [@textlint-ja/textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing)
-- [TFLint](https://github.com/terraform-linters/tflint)
+- [@textlint-ja/textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing/)
+- [TFLint](https://github.com/terraform-linters/tflint/)
 - [Vulture](https://github.com/jendrikseipp/vulture)
 
 ## 🛡️ Code Security
@@ -248,11 +246,11 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 - [OSV-Scanner](https://google.github.io/osv-scanner/)
 - [Semgrep](https://semgrep.dev/)
 - [Trivy](https://trivy.dev/)
-- [TruffleHog](https://trufflesecurity.com/trufflehog)
+- [TruffleHog](https://trufflesecurity.com/trufflehog/)
 
 ## 🔁 CI/CD
 
-- [GitHub Actions](https://github.com/features/actions)
+- [GitHub Actions](https://github.com/features/actions/)
 - [GoReleaser](https://goreleaser.com/)
 - [Lefthook](https://lefthook.dev/)
 
@@ -266,20 +264,20 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 ## 🐳 Container
 
-- [Apple Container](https://github.com/apple/container)
+- [Apple Container](https://github.com/apple/container/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [LocalStack](https://www.localstack.cloud/)
 
 ## 🧱 IaC
 
 - [AWS CDK](https://aws.amazon.com/cdk/)
-- [Terraform](https://developer.hashicorp.com/terraform)
+- [Terraform](https://developer.hashicorp.com/terraform/)
 
 ## 📦 Libraries
 
 - [AI SDK](https://ai-sdk.dev/)
 - [t3-env](https://env.t3.gg/)
-- [tsx](https://www.npmjs.com/package/tsx)
+- [tsx](https://www.npmjs.com/package/tsx/)
 
 ## 🔗 Reference
 
