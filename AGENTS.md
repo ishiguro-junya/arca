@@ -17,7 +17,7 @@
 
 - Add concise code comments when the intent or context would be difficult to understand from the code alone.
 - Do not add comments that merely restate what the code does.
-- As a rule, do not include fixed versions of dependencies or bundled tools in documentation or code comments. Refer to the configuration files that manage those versions instead. This does not apply when explaining specifications or constraints that depend on a particular version.
+- As a rule, do not include fixed versions of dependencies or bundled tools in documentation or code comments. Refer to the configuration files that manage those versions instead. This does not apply when explaining specifications or constraints that depend on a particular version, or when a comment identifies the release version corresponding to a commit-pinned GitHub Action.
 - When a code change alters specifications, usage, external interfaces, build procedures, or operational procedures, update the relevant documentation in the same change.
 - When specifying a location for temporary files, working copies, or similar artifacts, use the `tmp/` directory at the repository root and do not use another temporary location.
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor view that arranges artboards on a canvas.
