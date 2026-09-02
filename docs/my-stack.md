@@ -101,6 +101,11 @@
 - [TanStack Query](https://tanstack.com/query/latest/)
 - [v0](https://v0.dev/)
 
+## 🌏 Localization
+
+- [next-intl](https://next-intl.dev/)
+- [react-i18next](https://react.i18next.com/)
+
 ## 🧠 State Management
 
 - [Jotai](https://jotai.org/)
