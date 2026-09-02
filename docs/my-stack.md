@@ -103,6 +103,7 @@
 
 ## 🌏 Localization
 
+- [i18next](https://www.i18next.com/)
 - [next-intl](https://next-intl.dev/)
 - [react-i18next](https://react.i18next.com/)
 
