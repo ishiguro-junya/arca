@@ -1,0 +1,250 @@
+=== .gitignore 0644 ===
+.DS_Store
+.cache/
+.env
+.mise.local.toml
+dist/
+node_modules/
+
+=== .markdownlint-cli2.jsonc 0644 ===
+{
+  "config": {
+    "default": true,
+    "MD013": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", "dist", ".cache"]
+}
+
+=== .oxfmtrc.json 0644 ===
+{"printWidth":100}
+
+=== .oxlintrc.json 0644 ===
+{"categories":{"correctness":"error","suspicious":"error"}}
+
+=== .textlintrc.json 0644 ===
+{
+  "rules": {
+    "@textlint-ja/preset-ai-writing": true
+  }
+}
+
+=== AGENTS.md 0644 ===
+# AIエージェント向けガイドライン
+
+- mise.tomlで定義したツールとタスクを使用してください。
+- package.jsonへscriptsを追加しないでください。
+- 依存関係は各パッケージ管理ツールで固定してください。
+- 変更完了前にmise run checkを実行してください。
+
+=== README.md 0644 ===
+# demo
+
+Arcaで生成したプロジェクトです。
+
+## 選択内容
+
+- 用途: CLI
+- CLI: Node.js
+
+## miseタスク
+
+- setup
+- fmt
+- fmt-check
+- lint
+- typecheck
+- test
+- security
+- check
+- build
+- commit-check
+- cli:dev
+- cli:build
+
+`mise run <task>`でタスクを実行します。
+
+=== cli/main.ts 0644 ===
+#!/usr/bin/env node
+import { Command } from "commander";
+
+new Command()
+  .name("demo")
+  .description("demo command line interface")
+  .version("0.1.0")
+  .parse();
+
+=== knip.json 0644 ===
+{"entry":["cli/main.ts"],"ignoreDependencies":["@textlint-ja/textlint-rule-preset-ai-writing","knip","markdownlint-cli2","oxfmt","oxlint","textlint","tsx","typescript"]}
+
+=== lefthook.yml 0644 ===
+commit-msg:
+  commands:
+    conventional:
+      run: mise run commit-check -- {1}
+
+pre-commit:
+  commands:
+    fmt:
+      run: mise run fmt-check
+    lint:
+      run: mise run lint
+
+pre-push:
+  commands:
+    test:
+      run: mise run test
+
+=== mise.toml 0644 ===
+[settings]
+lockfile = false
+
+[tools]
+"cocogitto" = "1.2.3"
+"lefthook" = "1.2.3"
+"lychee" = "1.2.3"
+"node" = "1.2.3"
+"osv-scanner" = "1.2.3"
+"pnpm" = "1.2.3"
+"semgrep" = "1.2.3"
+"trufflehog" = "1.2.3"
+
+[tasks."setup"]
+description = "依存関係をインストールする"
+run = '''
+set -e
+pnpm install --frozen-lockfile
+if [ -e .git ]; then lefthook install; fi
+'''
+
+[tasks."fmt"]
+description = "コードを整形する"
+run = '''
+set -e
+pnpm exec oxfmt --write .
+'''
+
+[tasks."fmt-check"]
+description = "コードが整形済みか確認する"
+run = '''
+set -e
+pnpm exec oxfmt --check .
+'''
+
+[tasks."lint"]
+description = "静的解析を実行する"
+run = '''
+set -e
+pnpm exec textlint "**/*.md"
+pnpm exec markdownlint-cli2
+lychee --exclude-path node_modules --exclude-path dist --exclude-path .cache .
+pnpm exec oxlint .
+pnpm exec knip
+'''
+
+[tasks."typecheck"]
+description = "型を検査する"
+run = '''
+set -e
+pnpm exec tsc --noEmit -p tsconfig.cli.json
+'''
+
+[tasks."test"]
+description = "テストを実行する"
+run = '''
+set -e
+echo "testの対象はありません"
+'''
+
+[tasks."security"]
+description = "セキュリティ検査を実行する"
+run = '''
+set -e
+osv-scanner scan source -r .
+trufflehog filesystem . --fail --no-update
+semgrep scan --config auto .
+'''
+
+[tasks."build"]
+description = "成果物をビルドする"
+run = '''
+set -e
+pnpm exec tsc -p tsconfig.cli.json
+'''
+
+[tasks."commit-check"]
+description = "コミットメッセージを検査する"
+run = '''
+set -e
+cog verify --file "$1"
+'''
+
+[tasks.check]
+description = "全検査を実行する"
+depends = ["fmt-check", "lint", "typecheck", "test", "security"]
+
+[tasks."cli:dev"]
+description = "CLIを実行する"
+run = '''
+set -e
+pnpm exec tsx cli/main.ts
+'''
+
+[tasks."cli:build"]
+description = "CLIをビルドする"
+run = '''
+set -e
+pnpm exec tsc -p tsconfig.cli.json
+'''
+
+=== package.json 0644 ===
+{
+  "name": "demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@1.2.3",
+  "bin": {
+    "demo": "./dist/cli/main.js"
+  },
+  "dependencies": {
+    "commander": "latest"
+  },
+  "devDependencies": {
+    "@textlint-ja/textlint-rule-preset-ai-writing": "latest",
+    "@types/node": "latest",
+    "knip": "latest",
+    "markdownlint-cli2": "latest",
+    "oxfmt": "latest",
+    "oxlint": "latest",
+    "textlint": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
+
+=== pnpm-workspace.yaml 0644 ===
+packages:
+  - "."
+
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+trustPolicy: no-downgrade
+strictDepBuilds: true
+dangerouslyAllowAllBuilds: false
+blockExoticSubdeps: true
+
+=== tsconfig.cli.json 0644 ===
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "outDir": "dist/cli",
+    "rootDir": "cli",
+    "types": ["node"]
+  },
+  "include": ["cli/**/*.ts"]
+}
+
