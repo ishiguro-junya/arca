@@ -24,6 +24,7 @@
 
 ## Tools
 
+- When using a computer-use plugin to operate a browser, always use the `🤖 AI Agents` tab group.
 - When adding a versioned package, plugin, tool, Docker image, or similar dependency, check official sources for the latest stable version and use it. If compatibility or another constraint prevents this, explain why.
 - Before adding a new script or command, explain its purpose, why it is necessary, and why an existing definition or direct command is insufficient, then ask the user for approval.
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
