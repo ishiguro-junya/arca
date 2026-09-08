@@ -38,6 +38,7 @@
 > Custom skills from private repositories are excluded from this list.  
 
 - [anthropics/skills](https://github.com/anthropics/skills/)
+- [archify](https://github.com/tt-a1i/archify/tree/main/archify/)
 - [diagram-design](https://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design/)
 - [eli5](https://github.com/anthropics/claude-plugins-community/tree/main/eli5/skills/eli5/)
 - [find-skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills/)
