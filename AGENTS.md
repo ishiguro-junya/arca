@@ -2,50 +2,55 @@
 
 ## General
 
-- When the user gives explicit instructions, prioritize them. Unless they conflict with higher-level instructions or safety constraints, prioritize these guidelines over skill- or tool-specific procedures.
+- Follow explicit user instructions, then these guidelines, then skill guidance, subject to higher-level instructions, safety constraints, and tool requirements.
 - In human-readable prose, put each sentence on its own line and do not insert line breaks within a sentence.
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
 - Do not use the section sign (`U+00A7`) in human-readable prose.
-- In Japanese prose, prefer common terminology and conventions. Avoid unnecessary mixing of English terms and unnatural literal translations, and use natural Japanese or loanwords established in Japanese.
+- In Japanese prose, use natural Japanese and established loanwords, following common terminology and conventions.
+
+## Task Completion
+
+- Within the requested scope, continue through relevant verification and fixes for failures caused by the change until the requested outcome is complete or progress requires user input.
+- Reuse authorization already given in the conversation; ask only for unresolved decisions or actions that still require approval under the rules below.
 
 ## Planning
 
-- When revising a plan, rewrite it as a self-contained final plan that appears to have been designed from the outset.
-- Assume the reader is a new participant with no knowledge of the conversation or earlier plan versions. Include only information needed to implement the final design, and omit revision history, superseded decisions, rejected alternatives, and change-relative statements.
+- When revising a plan, write a self-contained final design for a new participant with no conversation history, as though designed from the outset.
+- Include only what is needed to implement it; omit revision history, superseded decisions, rejected alternatives, and change-relative wording.
 
 ## Coding
 
-- Add concise code comments when the intent or context would be difficult to understand from the code alone.
-- Do not add comments that merely restate what the code does.
-- As a rule, do not include fixed versions of dependencies or bundled tools in documentation or code comments. Refer to the configuration files that manage those versions instead. This does not apply when explaining specifications or constraints that depend on a particular version, or when a comment identifies the release version corresponding to a commit-pinned GitHub Action.
+- Use concise code comments only to explain intent or context that is not apparent from the code.
+- Refer to configuration files for dependency and bundled-tool versions; state a version only when explaining version-specific constraints or identifying the release of a commit-pinned GitHub Action.
 - When a code change alters specifications, usage, external interfaces, build procedures, or operational procedures, update the relevant documentation in the same change.
-- When specifying a location for temporary files, working copies, or similar artifacts, use the `tmp/` directory at the repository root and do not use another temporary location.
+- Place temporary files, working copies, and similar artifacts in `tmp/` at the repository root.
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor view that arranges artboards on a canvas.
 
 ## Tools
 
-- Before using browser automation or a computer-use tool, first inspect the available connectors, MCP tools, plugin capabilities, skills, APIs, and CLIs, and determine whether a purpose-built option can complete the task.
-- Use the purpose-built option when available. Fall back to browser automation only when none can complete the task, and briefly explain the reason before doing so.
+- Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
+- Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
 - Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
 - Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
-- When adding a versioned package, plugin, tool, Docker image, or similar dependency, check official sources for the latest stable version and use it. If compatibility or another constraint prevents this, explain why.
-- Before adding a new script or command, explain its purpose, why it is necessary, and why an existing definition or direct command is insufficient, then ask the user for approval.
+- When adding a versioned dependency, including a package, plugin, tool, or Docker image, use the latest stable version verified from official sources unless a stated constraint prevents it.
+- Before adding a persistent script or command definition, explain its purpose and why existing definitions or a direct command are insufficient, then obtain approval unless already given.
+- This approval requirement covers adding reusable definitions, not running one-off commands for the requested task.
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
-- Do not run `gh auth status` as a preliminary check. Run the required `gh` command first. If it fails, inspect the error and resulting state, and investigate authentication only when it appears to be the cause.
+- Run the required `gh` command directly; use `gh auth status` only if a failure indicates an authentication problem.
 
 ## Git
 
-- Before modifying code on a base branch, ask the user whether to create a working branch.
+- Before modifying code on a base branch, ask whether to create a working branch unless the user has already specified branch handling.
 - Do not stage or unstage files, commit, or push unless the user explicitly requests it.
-- Keep changes with different reasons in separate commits, and divide commits into meaningful units.
+- Separate commits by reason, with each commit forming a meaningful unit.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
 
 ## Pull Requests
 
 - Do not merge a pull request unless the user explicitly requests it.
-- During a review, inspect the entire diff as well as related code, call sites, tests, and documentation impact. Identify as many issues as can reasonably be found at that time in a single review pass.
-- Before writing any review comments, present the findings to the user and obtain explicit approval to post them.
+- During a review, inspect the entire diff, related code, call sites, tests, and documentation impact, and report all actionable issues found in that pass.
+- Before posting review comments to GitHub, present the findings to the user and obtain explicit approval to post them.
 - Add review comments inline on the relevant lines whenever possible.
-- Unless the user explicitly requests submission, do not submit review comments. Keep them in a pending review with an empty body.
-- Phrase review comments as natural suggestions, such as “It may be better to ...,” rather than requests such as “Could you ...?”
-- When reviewing again after changes, fetch the latest pull request head and inspect replies to existing comments and their resolution status. Do not add comments for resolved issues or duplicate existing comments.
+- Keep approved comments in a pending review with an empty review body unless the user explicitly requests submission.
+- Phrase review comments as natural suggestions, such as “It may be better to ...”.
+- When reviewing again, fetch the latest pull request head and check existing comment replies and resolution status before reporting new issues; avoid resolved or duplicate findings.
