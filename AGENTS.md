@@ -24,7 +24,10 @@
 
 ## Tools
 
-- When using a computer-use plugin to operate a browser, always use the `🤖 AI Agents` tab group.
+- Before using browser automation or a computer-use tool, first inspect the available connectors, MCP tools, plugin capabilities, skills, APIs, and CLIs, and determine whether a purpose-built option can complete the task.
+- Use the purpose-built option when available. Fall back to browser automation only when none can complete the task, and briefly explain the reason before doing so.
+- Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
+- Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
 - When adding a versioned package, plugin, tool, Docker image, or similar dependency, check official sources for the latest stable version and use it. If compatibility or another constraint prevents this, explain why.
 - Before adding a new script or command, explain its purpose, why it is necessary, and why an existing definition or direct command is insufficient, then ask the user for approval.
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
