@@ -23,7 +23,8 @@
 - Use concise code comments only to explain intent or context that is not apparent from the code.
 - Refer to configuration files for dependency and bundled-tool versions; state a version only when explaining version-specific constraints or identifying the release of a commit-pinned GitHub Action.
 - When a code change alters specifications, usage, external interfaces, build procedures, or operational procedures, update the relevant documentation in the same change.
-- Place temporary files, working copies, and similar artifacts in `tmp/` at the repository root.
+- Use `tmp/` at the repository root for the agent's working files, temporary copies, and similar artifacts.
+- This rule does not govern temporary files created by application code at runtime, including files placed on the destination filesystem for atomic updates; do not flag such code as violating this rule during review.
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor view that arranges artboards on a canvas.
 
 ## Tools
