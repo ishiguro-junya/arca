@@ -25,22 +25,31 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Before adding a persistent script or command definition, explain its purpose and why existing definitions or a direct command are insufficient, then obtain approval unless already given.
 - This approval requirement covers adding reusable definitions, not running one-off commands for the requested task.
 
-## Agent Workspace
+## Workspace
 
-- Use `tmp/` at the repository root for the agent's working files, temporary copies, and similar artifacts.
-- This rule does not govern temporary files created by application code at runtime, including files placed on the destination filesystem for atomic updates; do not flag such code as violating this rule during review.
+- Use `tmp/` at the repository root for agent working files when `git check-ignore` confirms that it is ignored; otherwise use the system temporary directory.
+- This rule does not govern temporary files created by application code at runtime.
 
 ## Tool Use
 
 - Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
-- Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
-- Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
+- On macOS, request sandbox escalation on the first attempt for any shell command that launches a GUI application, directly or through automation, because sandboxed launches can fail during OS-service or GPU initialization.
+
+### Claude Design
+
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor's artboard canvas.
 
-## Git and GitHub
+### Chrome
 
-### Git Operations
+- Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
+- Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
+
+### Blender
+
+- For Blender work, reuse an already-running Blender through the Blender MCP when available.
+
+## Git
 
 - Before modifying code on a base branch, ask whether to create a working branch unless the user has already specified branch handling.
 - A request to update an existing pull request authorizes staging, committing, and a normal push of in-scope changes to that pull request's current head branch.
@@ -48,7 +57,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Separate commits by reason, with each commit forming a meaningful unit.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
 
-### GitHub Operations
+## GitHub
 
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
 - Run the required `gh` command directly; use `gh auth status` only if a failure indicates an authentication problem.
@@ -56,7 +65,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ### Code Review
 
-- During a code review, inspect the entire diff, related code, call sites, tests, and documentation impact, and report all actionable issues found in that pass.
+- For each code review request, repeat complete review passes over the entire current diff, related code, call sites, tests, and documentation impact until one complete pass finds no new actionable issues.
+- Deduplicate findings across passes and report the complete set together after the review converges.
 - Before posting review comments to GitHub, present the findings to the user and obtain explicit approval to post them.
 - Add review comments inline on the relevant lines whenever possible.
 - Keep comments approved for posting in a pending review with an empty review body unless the user explicitly requests submission.
