@@ -52,9 +52,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Git
 
-- Before modifying code on a base branch, ask whether to create a working branch unless the user has already specified branch handling.
 - A request to update an existing pull request authorizes staging, committing, and a normal push of in-scope changes to that pull request's current head branch.
-- Ask before pushing to a base branch, force-pushing, changing the remote branch, or including unrelated changes.
+- Ask before force-pushing, changing the remote branch, or including unrelated changes.
 - Separate commits by reason, with each commit forming a meaningful unit.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
 
