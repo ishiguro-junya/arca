@@ -93,6 +93,11 @@
 - [Vite](https://vite.dev/)
 - [Vue.js](https://vuejs.org/)
 
+## ⌨️ CLI
+
+- [Cobra](https://cobra.dev/)
+- [Commander.js](https://github.com/tj/commander.js/)
+
 ## 🖼️ UI/UX
 
 - [assistant-ui](https://www.assistant-ui.com/docs/)
@@ -169,6 +174,7 @@
 - [MySQL](https://www.mysql.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Prisma ORM](https://www.prisma.io/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
 - [sqlc](https://sqlc.dev/)
 - [SQLite](https://www.sqlite.org/)
 
@@ -222,7 +228,6 @@
 
 ## ✨ Code Quality
 
-- [Biome](https://biomejs.dev/)
 - [Cocogitto](https://docs.cocogitto.io/)
 - [Knip](https://knip.dev/)
 - [Lychee](https://lychee.cli.rs/)
