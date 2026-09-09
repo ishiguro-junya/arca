@@ -31,6 +31,7 @@
 - [Product Design](https://openai.com/business/plugins/product-design/)
 - [tl;dv](https://chatgpt.com/plugins/plugin_asdk_app_69bca4c1b4f48191b616c7ab063eb17a/)
 - [Fal](https://chatgpt.com/plugins/asdk_app_6a19d5012d308191a00a48780f7dcdcc/)
+- [Tripo 3D](https://www.tripo3d.ai/)
 
 ## ⚡️ Skill
 
