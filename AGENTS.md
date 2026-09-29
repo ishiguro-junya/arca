@@ -43,6 +43,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ### Chrome
 
+- Always launch Chrome outside the agent sandbox from the first attempt, including headless launches and launches through automation; for shell commands, use `sandbox_permissions="require_escalated"`.
 - Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
 - Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
 
