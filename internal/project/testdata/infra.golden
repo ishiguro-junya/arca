@@ -1,0 +1,220 @@
+=== .gitignore 0644 ===
+.DS_Store
+.cache/
+.env
+.mise.local.toml
+dist/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/.terraform/
+node_modules/
+
+=== .markdownlint-cli2.jsonc 0644 ===
+{
+  "config": {
+    "default": true,
+    "MD013": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", "dist", ".cache"]
+}
+
+=== .textlintrc.json 0644 ===
+{
+  "rules": {
+    "@textlint-ja/preset-ai-writing": true
+  }
+}
+
+=== AGENTS.md 0644 ===
+# AIエージェント向けガイドライン
+
+- mise.tomlで定義したツールとタスクを使用してください。
+- package.jsonへscriptsを追加しないでください。
+- 依存関係は各パッケージ管理ツールで固定してください。
+- 変更完了前にmise run checkを実行してください。
+
+=== README.md 0644 ===
+# demo
+
+Arcaで生成したプロジェクトです。
+
+## 選択内容
+
+- 用途: Infra
+- Infra: Terraform + Azure
+
+## miseタスク
+
+- setup
+- fmt
+- fmt-check
+- lint
+- typecheck
+- test
+- security
+- check
+- build
+- commit-check
+- infra:validate
+
+`mise run <task>`でタスクを実行します。
+
+=== infra/main.tf 0644 ===
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+=== lefthook.yml 0644 ===
+commit-msg:
+  commands:
+    conventional:
+      run: mise run commit-check -- {1}
+
+pre-commit:
+  commands:
+    fmt:
+      run: mise run fmt-check
+    lint:
+      run: mise run lint
+
+pre-push:
+  commands:
+    test:
+      run: mise run test
+
+=== mise.toml 0644 ===
+[settings]
+lockfile = false
+
+[tools]
+"cocogitto" = "1.2.3"
+"lefthook" = "1.2.3"
+"lychee" = "1.2.3"
+"node" = "1.2.3"
+"osv-scanner" = "1.2.3"
+"pnpm" = "1.2.3"
+"semgrep" = "1.2.3"
+"terraform" = "1.2.3"
+"tflint" = "1.2.3"
+"trivy" = "1.2.3"
+"trufflehog" = "1.2.3"
+
+[tasks."setup"]
+description = "依存関係をインストールする"
+run = '''
+set -e
+pnpm install --frozen-lockfile
+terraform -chdir=infra init -backend=false
+if [ -e .git ]; then lefthook install; fi
+'''
+
+[tasks."fmt"]
+description = "コードを整形する"
+run = '''
+set -e
+terraform -chdir=infra fmt
+'''
+
+[tasks."fmt-check"]
+description = "コードが整形済みか確認する"
+run = '''
+set -e
+terraform -chdir=infra fmt -check
+'''
+
+[tasks."lint"]
+description = "静的解析を実行する"
+run = '''
+set -e
+pnpm exec textlint "**/*.md"
+pnpm exec markdownlint-cli2
+lychee --exclude-path node_modules --exclude-path dist --exclude-path .cache .
+terraform -chdir=infra validate
+tflint --chdir=infra
+'''
+
+[tasks."typecheck"]
+description = "型を検査する"
+run = '''
+set -e
+echo "typecheckの対象はありません"
+'''
+
+[tasks."test"]
+description = "テストを実行する"
+run = '''
+set -e
+echo "testの対象はありません"
+'''
+
+[tasks."security"]
+description = "セキュリティ検査を実行する"
+run = '''
+set -e
+osv-scanner scan source -r .
+trufflehog filesystem . --fail --no-update
+semgrep scan --config auto .
+trivy config infra
+'''
+
+[tasks."build"]
+description = "成果物をビルドする"
+run = '''
+set -e
+echo "buildの対象はありません"
+'''
+
+[tasks."commit-check"]
+description = "コミットメッセージを検査する"
+run = '''
+set -e
+cog verify --file "$1"
+'''
+
+[tasks.check]
+description = "全検査を実行する"
+depends = ["fmt-check", "lint", "typecheck", "test", "security"]
+
+[tasks."infra:validate"]
+description = "Infraを検証する"
+run = '''
+set -e
+terraform -chdir=infra validate
+tflint --chdir=infra
+trivy config infra
+'''
+
+=== package.json 0644 ===
+{
+  "name": "demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@1.2.3",
+  "devDependencies": {
+    "@textlint-ja/textlint-rule-preset-ai-writing": "latest",
+    "markdownlint-cli2": "latest",
+    "textlint": "latest"
+  }
+}
+
+=== pnpm-workspace.yaml 0644 ===
+packages:
+  - "."
+
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+trustPolicy: no-downgrade
+strictDepBuilds: true
+dangerouslyAllowAllBuilds: false
+blockExoticSubdeps: true
+

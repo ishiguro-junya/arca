@@ -1,0 +1,490 @@
+=== .gitignore 0644 ===
+.DS_Store
+.cache/
+.env
+.mise.local.toml
+.next/
+backend/.pytest_cache/
+backend/.venv/
+backend/__pycache__/
+dist/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/.terraform/
+node_modules/
+
+=== .markdownlint-cli2.jsonc 0644 ===
+{
+  "config": {
+    "default": true,
+    "MD013": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", "dist", ".cache"]
+}
+
+=== .oxfmtrc.json 0644 ===
+{"printWidth":100}
+
+=== .oxlintrc.json 0644 ===
+{"categories":{"correctness":"error","suspicious":"error"}}
+
+=== .textlintrc.json 0644 ===
+{
+  "rules": {
+    "@textlint-ja/preset-ai-writing": true
+  }
+}
+
+=== AGENTS.md 0644 ===
+# AIエージェント向けガイドライン
+
+- mise.tomlで定義したツールとタスクを使用してください。
+- package.jsonへscriptsを追加しないでください。
+- 依存関係は各パッケージ管理ツールで固定してください。
+- 変更完了前にmise run checkを実行してください。
+
+=== README.md 0644 ===
+# demo
+
+Arcaで生成したプロジェクトです。
+
+## 選択内容
+
+- 用途: App, Backend, CLI, Infra
+- App: Next.js
+- CLI: Node.js
+- Infra: Terraform + Cloudflare
+- オプション: Inter, Jotai, Localization, Lucide, Noto Sans JP, React Hook Form, SQLAlchemy + Alembic, Zod, shadcn/ui
+
+## miseタスク
+
+- setup
+- fmt
+- fmt-check
+- lint
+- typecheck
+- test
+- security
+- check
+- build
+- commit-check
+- app:dev
+- app:build
+- backend:dev
+- backend:test
+- cli:dev
+- cli:build
+- infra:validate
+
+`mise run <task>`でタスクを実行します。
+
+=== backend/pyproject.toml 0644 ===
+[project]
+name = "demo-backend"
+version = "0.1.0"
+requires-python = ">=1.2"
+dependencies = ["alembic", "fastapi[standard]", "httpx", "sqlalchemy"]
+
+[dependency-groups]
+dev = ["pytest", "ruff", "vulture"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+=== backend/src/demo/__init__.py 0644 ===
+
+
+=== backend/src/demo/main.py 0644 ===
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+=== backend/tests/test_health.py 0644 ===
+from fastapi.testclient import TestClient
+
+from demo.main import app
+
+
+def test_health() -> None:
+    response = TestClient(app).get("/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
+=== cli/main.ts 0644 ===
+#!/usr/bin/env node
+import { Command } from "commander";
+
+new Command()
+  .name("demo")
+  .description("demo command line interface")
+  .version("0.1.0")
+  .parse();
+
+=== components.json 0644 ===
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": { "css": "src/app/globals.css", "cssVariables": true },
+  "aliases": { "components": "@/components", "utils": "@/lib/utils" }
+}
+
+=== infra/main.tf 0644 ===
+terraform {
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
+  }
+}
+
+provider "cloudflare" {}
+
+=== knip.json 0644 ===
+{"entry":["src/app/**/*.{ts,tsx}","cli/main.ts"],"ignoreDependencies":["@textlint-ja/textlint-rule-preset-ai-writing","class-variance-authority","clsx","jotai","knip","lucide-react","markdownlint-cli2","next-intl","oxfmt","oxlint","react-hook-form","shadcn","tailwind-merge","textlint","tsx","typescript","zod"]}
+
+=== lefthook.yml 0644 ===
+commit-msg:
+  commands:
+    conventional:
+      run: mise run commit-check -- {1}
+
+pre-commit:
+  commands:
+    fmt:
+      run: mise run fmt-check
+    lint:
+      run: mise run lint
+
+pre-push:
+  commands:
+    test:
+      run: mise run test
+
+=== messages/en.json 0644 ===
+{"title":"Hello"}
+
+=== messages/ja.json 0644 ===
+{"title":"こんにちは"}
+
+=== mise.toml 0644 ===
+[settings]
+lockfile = false
+
+[tools]
+"cocogitto" = "1.2.3"
+"lefthook" = "1.2.3"
+"lychee" = "1.2.3"
+"node" = "1.2.3"
+"osv-scanner" = "1.2.3"
+"pnpm" = "1.2.3"
+"python" = "1.2.3"
+"semgrep" = "1.2.3"
+"terraform" = "1.2.3"
+"tflint" = "1.2.3"
+"trivy" = "1.2.3"
+"trufflehog" = "1.2.3"
+"uv" = "1.2.3"
+
+[tasks."setup"]
+description = "依存関係をインストールする"
+run = '''
+set -e
+pnpm install --frozen-lockfile
+uv sync --project backend --frozen
+terraform -chdir=infra init -backend=false
+if [ -e .git ]; then lefthook install; fi
+'''
+
+[tasks."fmt"]
+description = "コードを整形する"
+run = '''
+set -e
+pnpm exec oxfmt --write .
+uv run --project backend ruff format backend
+terraform -chdir=infra fmt
+'''
+
+[tasks."fmt-check"]
+description = "コードが整形済みか確認する"
+run = '''
+set -e
+pnpm exec oxfmt --check .
+uv run --project backend ruff format --check backend
+terraform -chdir=infra fmt -check
+'''
+
+[tasks."lint"]
+description = "静的解析を実行する"
+run = '''
+set -e
+pnpm exec textlint "**/*.md"
+pnpm exec markdownlint-cli2
+lychee --exclude-path node_modules --exclude-path dist --exclude-path .cache .
+pnpm exec oxlint .
+pnpm exec knip
+uv run --project backend ruff check backend
+uv run --project backend vulture backend
+terraform -chdir=infra validate
+tflint --chdir=infra
+'''
+
+[tasks."typecheck"]
+description = "型を検査する"
+run = '''
+set -e
+pnpm exec tsc --noEmit -p tsconfig.json
+pnpm exec tsc --noEmit -p tsconfig.cli.json
+uv run --project backend python -m compileall -q backend/src
+'''
+
+[tasks."test"]
+description = "テストを実行する"
+run = '''
+set -e
+uv run --project backend pytest backend
+'''
+
+[tasks."security"]
+description = "セキュリティ検査を実行する"
+run = '''
+set -e
+osv-scanner scan source -r .
+trufflehog filesystem . --fail --no-update
+semgrep scan --config auto .
+trivy config infra
+'''
+
+[tasks."build"]
+description = "成果物をビルドする"
+run = '''
+set -e
+pnpm exec next build
+pnpm exec tsc -p tsconfig.cli.json
+'''
+
+[tasks."commit-check"]
+description = "コミットメッセージを検査する"
+run = '''
+set -e
+cog verify --file "$1"
+'''
+
+[tasks.check]
+description = "全検査を実行する"
+depends = ["fmt-check", "lint", "typecheck", "test", "security"]
+
+[tasks."app:dev"]
+description = "Appを起動する"
+run = '''
+set -e
+pnpm exec next dev
+'''
+
+[tasks."app:build"]
+description = "Appをビルドする"
+run = '''
+set -e
+pnpm exec next build
+'''
+
+[tasks."backend:dev"]
+description = "Backendを起動する"
+run = '''
+set -e
+uv run --project backend fastapi dev backend/src/demo/main.py
+'''
+
+[tasks."backend:test"]
+description = "Backendをテストする"
+run = '''
+set -e
+uv run --project backend pytest backend
+'''
+
+[tasks."cli:dev"]
+description = "CLIを実行する"
+run = '''
+set -e
+pnpm exec tsx cli/main.ts
+'''
+
+[tasks."cli:build"]
+description = "CLIをビルドする"
+run = '''
+set -e
+pnpm exec tsc -p tsconfig.cli.json
+'''
+
+[tasks."infra:validate"]
+description = "Infraを検証する"
+run = '''
+set -e
+terraform -chdir=infra validate
+tflint --chdir=infra
+trivy config infra
+'''
+
+=== next-env.d.ts 0644 ===
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+=== next.config.ts 0644 ===
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+export default withNextIntl({});
+
+=== package.json 0644 ===
+{
+  "name": "demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@1.2.3",
+  "bin": {
+    "demo": "./dist/cli/main.js"
+  },
+  "dependencies": {
+    "class-variance-authority": "latest",
+    "clsx": "latest",
+    "commander": "latest",
+    "jotai": "latest",
+    "lucide-react": "latest",
+    "next": "latest",
+    "next-intl": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hook-form": "latest",
+    "tailwind-merge": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@textlint-ja/textlint-rule-preset-ai-writing": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "knip": "latest",
+    "markdownlint-cli2": "latest",
+    "oxfmt": "latest",
+    "oxlint": "latest",
+    "shadcn": "latest",
+    "tailwindcss": "latest",
+    "textlint": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
+
+=== pnpm-workspace.yaml 0644 ===
+packages:
+  - "."
+
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+trustPolicy: no-downgrade
+strictDepBuilds: true
+dangerouslyAllowAllBuilds: false
+blockExoticSubdeps: true
+
+=== postcss.config.mjs 0644 ===
+export default { plugins: { "@tailwindcss/postcss": {} } };
+
+=== src/app/globals.css 0644 ===
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+=== src/app/layout.tsx 0644 ===
+import "./globals.css";
+import { Inter, Noto_Sans_JP } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const notoSansJP = Noto_Sans_JP({ preload: false, variable: "--font-noto-sans-jp" });
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="ja" className={[inter.variable, notoSansJP.variable].join(" ")}>
+      <body><NextIntlClientProvider>{children}</NextIntlClientProvider></body>
+    </html>
+  );
+}
+
+=== src/app/page.tsx 0644 ===
+export default function Home() {
+  return (
+    <main className="min-h-screen p-8 font-sans">
+      <h1 className="text-3xl font-bold">demo</h1>
+    </main>
+  );
+}
+
+=== src/i18n/request.ts 0644 ===
+import { getRequestConfig } from "next-intl/server";
+
+export default getRequestConfig(async () => ({
+  locale: "ja",
+  messages: (await import("../../messages/ja.json")).default,
+}));
+
+=== src/lib/utils.ts 0644 ===
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+=== tsconfig.cli.json 0644 ===
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "outDir": "dist/cli",
+    "rootDir": "cli",
+    "types": ["node"]
+  },
+  "include": ["cli/**/*.ts"]
+}
+
+=== tsconfig.json 0644 ===
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "cli"]
+}
+
