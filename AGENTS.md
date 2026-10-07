@@ -40,6 +40,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 ## HTML Slide
 
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor's artboard canvas.
+- For HTML slide decks, allow slide navigation only through previous/next buttons and keyboard controls.
+- Do not navigate when clicking the slide body or blank space, or when selecting or copying text.
 
 ## Chrome
 
