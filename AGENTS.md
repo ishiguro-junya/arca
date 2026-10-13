@@ -18,7 +18,9 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Development
 
-- Use concise code comments only to explain intent or context that is not apparent from the code.
+- Express How in implementation code: how the required behavior is achieved.
+- Express What in test code: what behavior and outcomes are expected.
+- Keep code comments concise and, by default, limit them to Why not: why a plausible alternative is not used.
 - When a code change alters specifications, usage, external interfaces, build procedures, or operational procedures, update the relevant documentation in the same change.
 - When adding a versioned dependency, including a package, plugin, tool, or Docker image, use the latest stable version verified from official sources unless a stated constraint prevents it.
 - Refer to configuration files for dependency and bundled-tool versions; state a version only when explaining version-specific constraints or identifying the release of a commit-pinned GitHub Action.
@@ -59,6 +61,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - A request to update an existing pull request authorizes staging, committing, and a normal push of in-scope changes to that pull request's current head branch.
 - Ask before force-pushing, changing the remote branch, or including unrelated changes.
 - Separate commits by reason, with each commit forming a meaningful unit.
+- Explain Why in commit messages: why the change is needed.
 - Write commit messages in Conventional Commits format, with the `type` and optional `scope` in English and the description in Japanese.
 
 ### GitHub
