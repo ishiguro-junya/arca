@@ -39,6 +39,8 @@
 > Anthropic's `pdf` and `skill-creator` are excluded because they conflict with built-in skills.  
 > Custom skills from private repositories are excluded from this list.  
 
+### Community Skill
+
 - [anthropics/skills](https://github.com/anthropics/skills/)
 - [archify](https://github.com/tt-a1i/archify/tree/main/archify/)
 - [diagram-design](https://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design/)
@@ -58,6 +60,10 @@
 - [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp/)
 - [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop/)
 - [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills/)
+
+### Cunstom Skill
+
+- [review-loop](../skills/review-loop/README.md)
 
 ## 🔌 MCP
 

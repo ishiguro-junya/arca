@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Loop"
+  short_description: "Review and fix changes within a bounded review loop"
+  default_prompt: "Use $review-loop to review and fix these changes until actionable findings are resolved or the review limit is reached."
