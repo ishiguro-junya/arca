@@ -32,8 +32,10 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Use `tmp/` at the repository root for agent working files when `git check-ignore` confirms that it is ignored; otherwise use the system temporary directory.
 - This rule does not govern temporary files created by application code at runtime.
 
-## Codex
+## ChatGPT (Codex)
 
+- Do not infer unstated user intent or expand the requested scope on your own.
+- If the user's intent, requested scope, or authorization is uncertain, ask the user and obtain confirmation before taking the affected action.
 - When GPT-6 Astra is the active model, do not use sub-agents unless the user explicitly authorizes their use, because sub-agents substantially increase token consumption.
 - Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
