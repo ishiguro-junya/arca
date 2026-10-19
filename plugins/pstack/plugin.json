@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pstack",
+  "version": "0.1.0",
+  "description": "Unofficial Codex port of Lauren Tan’s pstack: investigation, design, implementation, verification, and review workflows.",
+  "author": {
+    "name": "Arca contributors"
+  },
+  "repository": "https://github.com/ishiguro-junya/arca",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "pstack",
+    "workflow",
+    "review"
+  ]
+}

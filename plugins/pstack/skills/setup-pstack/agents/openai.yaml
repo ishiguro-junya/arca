@@ -1,0 +1,4 @@
+interface:
+  display_name: "setup-pstack"
+  short_description: "Use the pstack setup-pstack workflow"
+  default_prompt: "Use $setup-pstack for this task."

@@ -1,0 +1,17 @@
+{
+  "name": "@arca/pstack-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --project watch-pr/tsconfig.json --noEmit --strict"
+  },
+  "dependencies": {
+    "commander": "15.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "1.4.3",
+    "typescript": "7.0.2"
+  },
+  "packageManager": "bun@1.4.3"
+}

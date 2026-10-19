@@ -1,0 +1,6 @@
+interface:
+  display_name: "principle-test-behavior-not-implementation"
+  short_description: "Apply this pstack engineering principle"
+  default_prompt: "Use $principle-test-behavior-not-implementation for this task."
+policy:
+  allow_implicit_invocation: false

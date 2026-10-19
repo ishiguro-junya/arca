@@ -13,6 +13,10 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.codex/AGENTS.md
 ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 ```
 
+## 🧩 Codex Plugins
+
+- [pstack](./plugins/pstack/README.md): Codex 向けの非公式移植版。
+
 ## 📚 Documents
 
 - [my-stack](./docs/my-stack.md)
