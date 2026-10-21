@@ -1,6 +1,7 @@
 # Review Loop
 
-Review and fix a branch, pull request, or local changes until actionable findings are resolved, with a default limit of five complete review passes.
+Review and fix a branch, pull request, or local changes until actionable findings are resolved, with a default limit of five counted review passes.
+Passes that identify confirmed actionable findings do not count toward the limit.
 Use it when you want the agent to carry fixes through regression checks and another review.
 A request for review alone does not grant permission to edit or publish changes.
 
@@ -52,12 +53,12 @@ In Claude Code:
 Specify a positive integer to override the default limit:
 
 ```text
-$review-loop Review and fix my local changes, using at most 3 complete review passes.
+$review-loop Review and fix my local changes, using at most 3 counted review passes.
 ```
 
-The first review counts toward the limit.
-Fixes happen between passes, so a limit of one produces a review without a repair cycle.
-Findings still present on the last pass are reported without further edits.
+Each review counts provisionally when it starts, including the first.
+A pass with a confirmed actionable finding is removed from the count, allowing a fix and another full review even when the limit is one.
+Interrupted or invalidated passes without a confirmed finding remain counted.
 The agent reports progress and results in your language.
 
 ## Results
@@ -65,7 +66,7 @@ The agent reports progress and results in your language.
 | Outcome | Meaning |
 | --- | --- |
 | Complete | The final full review is clean, accepted findings are verified resolved, and required checks passed. |
-| Limit reached — incomplete | Findings or review coverage remain unresolved when no passes are left. |
+| Limit reached — incomplete | Review coverage remains unresolved after the counted-pass limit, without a confirmed actionable finding. |
 | Blocked — incomplete | A required decision, permission, reviewer, or verification prevents progress. |
 
 Completed fixes are retained when the run stops without completion.

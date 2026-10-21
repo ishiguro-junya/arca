@@ -8,13 +8,14 @@ Preserve the record across handoffs and context compaction.
 
 - Target repository, branch or PR, resolved comparison base, and included changes.
 - Sources for expected behavior, repository standards, and required checks.
-- Effective pass limit, passes started, passes completed, and current phase.
+- Effective counted-pass limit, total passes started and completed, counted passes, and current phase.
 - Existing unrelated changes and authorized delivery actions.
 - For each pass: head, relevant path set and content identity, including staged, unstaged, and untracked files.
 - Full review coverage, reviewer completion, and any snapshot invalidation.
 
 Record a content hash or equivalent diff-and-file evidence for dirty inputs.
-Count an invalidated or interrupted full pass as started; a restart consumes the next pass.
+Count each pass provisionally when it starts; remove it from the counted total if it identifies a confirmed actionable finding.
+An invalidated or interrupted pass without a confirmed finding stays counted; a restart starts another pass.
 Several reviewers of one snapshot share a pass, not separate counters.
 
 ## Findings
@@ -45,13 +46,13 @@ Do not imply that a mocked service, subset of tests, or static inspection exerci
 
 ## Progress and final report
 
-Progress should state `pass N / limit`, open root causes, new or reopened findings, and remaining checks or blockers.
+Progress should state total passes and `counted passes N / limit`, open root causes, new or reopened findings, and remaining checks or blockers.
 Report meaningful changes and lengthy waits rather than only growing test counts.
 
 The final report contains:
 
 1. Outcome: complete, limit reached — incomplete, or blocked — incomplete.
-2. Passes started and completed, effective limit, and any invalidated passes.
+2. Total passes started and completed, counted passes, effective limit, and any invalidated passes.
 3. Fixes and the exact reviewed state, with commit or PR links when available.
 4. Verification performed, justified reuse, and omitted or unavailable checks.
 5. Unresolved findings with evidence, incomplete review coverage, and work or decisions needed to continue.
