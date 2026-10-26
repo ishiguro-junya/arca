@@ -5,6 +5,18 @@
   },
   "plugins": [
     {
+      "name": "imozuru",
+      "source": {
+        "source": "local",
+        "path": "./plugins/imozuru"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "pstack",
       "source": {
         "source": "local",

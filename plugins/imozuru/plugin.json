@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "imozuru",
+  "version": "0.1.0",
+  "description": "Codex port of MaryCache's imozuru: follow citations and authors to original sources, verify quotations, and build research reports and dashboards.",
+  "author": {
+    "name": "Arca contributors"
+  },
+  "repository": "https://github.com/ishiguro-junya/arca",
+  "license": "MIT",
+  "keywords": ["codex", "research", "imozuru", "source-discovery"]
+}

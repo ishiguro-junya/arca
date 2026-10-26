@@ -15,6 +15,7 @@ ln -sfn "$(pwd)/AGENTS.md" ~/.claude/CLAUDE.md
 
 ## 🧩 Codex Plugins
 
+- [imozuru](./plugins/imozuru/README.md): 原文をたどる調査・引用照合・新着確認の Codex 向け移植版。
 - [pstack](./plugins/pstack/README.md): Codex 向けの非公式移植版。
 
 ## 📚 Documents

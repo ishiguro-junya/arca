@@ -1,0 +1,4 @@
+interface:
+  display_name: "imozuru"
+  short_description: "用語・人物・引用から原文をたどり、根拠付きレポートと調査記録を作る"
+  default_prompt: "$imozuru を使って、この分野を用語・人物・引用から芋づる式に調べ、原文と根拠付きレポートを残してください。"
