@@ -19,6 +19,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 ## Development
 
 - When a repository's documentation and its existing code disagree, follow the conventions used in the existing code, and in your final reply point out each inconsistency you found between the documentation and the code.
+- Before adding complexity for a speculative or vanishingly unlikely race or security edge case, explain the concrete failure mode, likelihood, and complexity cost to the user and get their buy-in.
+  Do not silently expand scope for theoretical robustness.
 - Express How in implementation code: how the required behavior is achieved.
 - Express What in test code: what behavior and outcomes are expected.
 - Keep code comments concise and, by default, limit them to Why not: why a plausible alternative is not used.
