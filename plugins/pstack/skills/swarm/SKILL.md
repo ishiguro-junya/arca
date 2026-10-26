@@ -29,11 +29,11 @@ Open a todolist with one entry per phase before launching anything.
    Choose the shape.
    Partition into slices, race N workers on identical briefs, or mix both.
    For a race or mixed shape, declare `first pass`, `rank all`, or `best-of` before spawning.
-4.
+3.
    Pick `swarm workers` from `<codex-home>/pstack/models.md`, defaulting to `inherit-parent`.
    For a model race, name each available model and the method before running it.
    Apply the runtime contract's delegation and model rules.
-5.
+4.
    Give each worker its own writable output when it writes.
    When workers verify or measure commits, each brief names the exact SHAs.
    A measurement brief also names the method (sample count, what one sample is, order).
@@ -42,7 +42,7 @@ Open a todolist with one entry per phase before launching anything.
 ## Phase B: Fan out
 
 Spawn workers within the current concurrency limit, giving each writer an isolated local worktree or disjoint output.
-Use the actual subagent tool schema and the role from step 4.
+Use the actual subagent tool schema and the role from step 3.
 When delegation is unavailable or prohibited, execute the slices sequentially and label the result accordingly.
 
 When a worker must start from a non-default branch, prepare its worktree at that exact branch or commit and include its path in the brief.
@@ -67,4 +67,4 @@ Do not paste raw worker dumps.
 
 ## Phase D: Report
 
-Return one consolidated in-chat report with the table, issue one-liners, gaps or dropouts, and the race rule when used.
+Return one consolidated in-chat report with a result table, issue one-liners, gaps or dropouts, and the race rule when used.

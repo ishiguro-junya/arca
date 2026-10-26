@@ -65,6 +65,12 @@ Do not auto-apply.
 File each Backlog item to your team's devex or backlog tracker without waiting.
 Only the Accepted list waits for approval.
 
+Never edit a skill under `plugins/cache/`.
+Before approval, show its destination, `.agents/skills/<skill>/` or `<codex-home>/skills/<skill>/`.
+After approval, copy the skill folder there and edit the copy.
+Check for an existing destination and preserve its changes.
+Never open a PR or push as part of this skill.
+
 Follow each approved row's Routing exactly:
 
 - Trivial existing-skill edit (a one-line bullet, a tightened sentence, a stale fact corrected): the parent does it directly.

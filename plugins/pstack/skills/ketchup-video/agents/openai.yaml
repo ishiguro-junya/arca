@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ketchup video"
+  short_description: "Summarize recent work in a short silent video"
+  default_prompt: "Use $ketchup-video to show what changed and which decisions need me."
+policy:
+  allow_implicit_invocation: false

@@ -1,7 +1,7 @@
 # pstack for Codex
 
 Lauren Tan（poteto）の [pstack](https://github.com/cursor/plugins/tree/main/pstack) を Codex 向けに移植した非公式プラグインです。
-調査、設計、実装、検証、レビュー、PR 管理を、54 スキルと 23 の手順集で支援します。
+調査、設計、実装、検証、レビュー、PR 管理を、57 スキルと 23 の手順集で支援します。
 作者や Cursor、OpenAI による公式版ではありません。
 
 ## 導入
@@ -55,12 +55,18 @@ Codex のグローバルなモデル設定や AGENTS.md は変更しません。
 | 計画書の構造チェック | Node.js または Bun |
 | 作業ツリーの監査 | Bash、Git、jq、Python 3、PR 状態を取得する GitHub CLI |
 | ローカル会話履歴の照合 | Python 3 |
+| 状態遷移図と形式検証 | Node.js、TLC、Java。未導入時は mise、PNG 出力には npm |
+| 作業状況の動画要約 | 利用環境の動画描画ツール |
 | 実行記録 | Bash |
 
 Bun と JavaScript 依存関係の検証対象は [package.json](skills/poteto-mode/scripts/package.json) とロックファイルに記録しています。
 CLI 補助ツールの初回起動では、固定された依存関係をユーザーキャッシュへ取得します。
 保存先は XDG_CACHE_HOME または `~/.cache` 配下の `pstack/tools/` で、PSTACK_CACHE_DIR により検証用の別ディレクトリを指定できます。
 インストール時スクリプトは実行せず、プラグイン本体には依存関係を書き込みません。
+状態遷移図の描画依存は `skills/statechart/scripts/render.mjs`、TLC と Java の指定は `skills/statechart/scripts/tlc-tools.mjs` に記録しています。
+TLC と Java を既に導入済みなら TLA2TOOLS と JAVA を指定できます。
+描画依存は XDG_CACHE_HOME または `~/.cache` 配下の `statechart/` に保存します。
+動画要約は利用環境の描画ツールを使用し、利用できない場合はその旨と判断待ちの事項を文章で返します。
 継続作業の記録は Codex のユーザーディレクトリ内の `pstack/runs/<run-id>/` に分離し、再開時は記録に残した同じ場所を使います。
 
 ## PR 監視と継続実行
@@ -104,6 +110,24 @@ bun run typecheck
 スキルの実行シナリオは [評価シナリオ](evals/scenarios.md) を参照してください。
 メタデータやリンクの検証だけで、実際のエージェント動作を検証済みとはしません。
 
+状態遷移図のテストは、一時コピーしたプラグインのルートで実行できます。
+TLA2TOOLS、JAVA、XDG_CACHE_HOME を一時環境に向けると、普段のツール設定から分離できます。
+
+```sh
+node --test skills/statechart/scripts/test/statechart.test.mjs
+```
+
+## 今回の更新
+
+2026-10-26 に公式ソースを確認し、Codex 版を更新しました。
+
+- `ketchup-video` は、作業状況を短い無音動画で説明します。
+- `statechart` は、TLA+ モデルと状態遷移図を相互に扱い、不具合に至る経路を図示します。
+- `maintain-formal-verification-skill` は、コード変更後の形式検証のずれを点検・修正します。
+- `sharpen` は、依頼文を改善して返す用途に変更され、依頼の実行は行いません。
+- PR 監視の待機時間、fork の同名ブランチの識別、作業管理での有効な PR の選択、計画書のコード表記の判定を修正しました。
+- `reflect` の変更先を事前に示し、インストール済みキャッシュを直接編集しないようにしました。
+
 ## 上流の更新
 
 移植元コミット、対象ファイルのハッシュ、除外範囲は [upstream.json](upstream.json) に記録しています。
@@ -137,7 +161,9 @@ Codex 用の実行契約、モデル設定、明示呼び出し設定、履歴�
 | in-your-own-words | [SKILL.md](skills/in-your-own-words/SKILL.md) |
 | interrogate | [SKILL.md](skills/interrogate/SKILL.md) |
 | ketchup | [SKILL.md](skills/ketchup/SKILL.md) |
+| ketchup-video | [SKILL.md](skills/ketchup-video/SKILL.md) |
 | maintain-verification-skill | [SKILL.md](skills/maintain-verification-skill/SKILL.md) |
+| maintain-formal-verification-skill | [SKILL.md](skills/maintain-formal-verification-skill/SKILL.md) |
 | no-comments | [SKILL.md](skills/no-comments/SKILL.md) |
 | poteto-help | [SKILL.md](skills/poteto-help/SKILL.md) |
 | poteto-mode | [SKILL.md](skills/poteto-mode/SKILL.md) |
@@ -145,6 +171,7 @@ Codex 用の実行契約、モデル設定、明示呼び出し設定、履歴�
 | reflect | [SKILL.md](skills/reflect/SKILL.md) |
 | setup-pstack | [SKILL.md](skills/setup-pstack/SKILL.md) |
 | sharpen | [SKILL.md](skills/sharpen/SKILL.md) |
+| statechart | [SKILL.md](skills/statechart/SKILL.md) |
 | show-me-your-work | [SKILL.md](skills/show-me-your-work/SKILL.md) |
 | swarm | [SKILL.md](skills/swarm/SKILL.md) |
 | tdd | [SKILL.md](skills/tdd/SKILL.md) |

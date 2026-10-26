@@ -25,10 +25,10 @@ Choose the strongest such target in the repo, not the one that is easiest to ver
 ## Let the question choose the tool
 
 Pick the tool that answers the question at the lowest cost: a model checker, a proof assistant, an SMT-backed verifier, or another tool.
-Whether events can happen in a bad order usually suits a model checker over a small model of the design.
+Whether events can happen in a bad order usually suits a model checker over a small model of the design, and TLA+ is the default for that in any language.
 Whether the code itself behaves for every input, as with memory safety, overflow, or a data-structure invariant, usually suits a verifier that runs on the code.
+If no verifier runs on this language, say so, and test the real code with generated inputs, not a hand model of the function.
 A property that must hold at every size, where a bound is not enough, can need a proof.
-For concurrent and distributed designs, TLA+ is often the most useful place to start.
 Prefer a tool that the repo's developers can install and run, and tell the user why you chose it.
 
 ## What makes it good
@@ -45,14 +45,22 @@ Prefer a tool that the repo's developers can install and run, and tell the user 
 - **Readable without the tool.** State the property and the harm in one plain sentence each.
   Tell a counterexample as a short sequence of steps in the code's words.
 - **Cheap to rerun.** One command, a reproducible tool version, and a run short enough that the next agent will use it on every relevant change.
-- **Kept in step with the code.** When verified code changes, something tells the next agent that the verification needs another look.
+- **Kept in step with the code.** Record which files and functions each check covers, and the commit at which you last confirmed that the verification describes them.
+  When the covered code changes after that commit, the next agent can see that the verification needs another look.
 
 ## Generate the verify skill
 
 Write a project-local skill with frontmatter that names the area and says when to use it.
 Without frontmatter, the skill never registers.
 From the skill alone, the next agent must be able to tell whether a change touches the verified code, run the check, tell a real bug from a modeling error, and update the verification when a change is intended.
+Put the coverage record and the sync commit in the skill, and tell the next agent to move the sync commit forward only after it confirms that the verification describes the code at the new commit.
 Use this repo's real commands, paths, and nouns, and leave no placeholders.
+
+If the check is a TLA+ model, tell the next agent to read every result with the pstack [`/statechart`](../statechart/SKILL.md) skill.
+It shows each invariant violation the checker finds as its shortest path in plain words, and which of those violations a change fixes.
+When the check passes, `/statechart` draws a chart of how the system moves between states.
+Refer to `/statechart` by name.
+Its commands, options, and file paths change between releases and machines, so copy none of them into the generated skill or its scripts.
 
 ## Prove it before you hand off
 
@@ -66,3 +74,4 @@ If the skill misses the break or a step does not run, fix the skill or the verif
 
 Tell the user what you verified, which tool you used and why, the bounds, what the check found in plain words, how to run it, and what it does not cover.
 Suggest a second target only if you found a close one.
+Point the user at `/maintain-formal-verification-skill` for bringing the verification back in line after changes that did not recheck it.

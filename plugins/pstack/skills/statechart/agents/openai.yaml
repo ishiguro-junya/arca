@@ -1,0 +1,6 @@
+interface:
+  display_name: "Statechart"
+  short_description: "Explain system states and bugs with checked diagrams"
+  default_prompt: "Use $statechart to explain this system and its failing paths."
+policy:
+  allow_implicit_invocation: false

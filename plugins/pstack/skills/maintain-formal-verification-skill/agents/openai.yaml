@@ -1,0 +1,6 @@
+interface:
+  display_name: "Maintain formal verification"
+  short_description: "Bring formal checks back in sync with the code"
+  default_prompt: "Use $maintain-formal-verification-skill to check for drift in the existing verification."
+policy:
+  allow_implicit_invocation: false
