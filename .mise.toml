@@ -1,0 +1,47 @@
+[settings]
+experimental = true
+lockfile = false
+
+[tools]
+go = "1.27.0"
+node = "26.8.1"
+lefthook = "2.1.12"
+"npm:markdownlint-cli2" = "0.23.2"
+"github:goreleaser/goreleaser" = "2.18.0"
+"aqua:golangci/golangci-lint" = "2.13.2"
+
+[env]
+GOCACHE = "{{config_root}}/.cache/go-build"
+GOMODCACHE = "{{config_root}}/.cache/go-mod"
+GOLANGCI_LINT_CACHE = "{{config_root}}/.cache/golangci-lint"
+
+[hooks]
+postinstall = "lefthook install"
+
+[tasks.fmt]
+description = "Goコードを整形する"
+run = "gofmt -w $(rg --files -g '*.go' -g '!.cache/**')"
+
+[tasks.fmt-check]
+description = "Goコードが整形済みか確認する"
+run = "test -z \"$(gofmt -l $(rg --files -g '*.go' -g '!.cache/**'))\""
+
+[tasks.test]
+description = "全テストを実行する"
+run = "go test ./..."
+
+[tasks.lint]
+description = "Goコードを静的解析する"
+run = "golangci-lint run"
+
+[tasks.lint-md]
+description = "Markdownを検査する"
+run = "markdownlint-cli2"
+
+[tasks.build]
+description = "Arcaバイナリをビルドする"
+run = "mkdir -p dist && go build -o dist/arca ."
+
+[tasks.release-check]
+description = "リリース設定をスナップショットで検証する"
+run = "goreleaser release --snapshot --clean"
