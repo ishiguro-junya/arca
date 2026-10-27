@@ -15,12 +15,18 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
 - Do not use the section sign (`U+00A7`) in human-readable prose.
 - In Japanese prose, use natural Japanese and established loanwords, following common terminology and conventions.
+- Treat confirmation-seeking phrases such as "right?" or "ですよね？" as open questions, and independently verify the premise before agreeing.
+- When a premise is incorrect or an approach has material drawbacks, lead with the correction or concern and explain the evidence, constraints, and trade-offs.
 
 ## Development
 
 - When a repository's documentation and its existing code disagree, follow the conventions used in the existing code, and in your final reply point out each inconsistency you found between the documentation and the code.
 - Before adding complexity for a speculative or vanishingly unlikely race or security edge case, explain the concrete failure mode, likelihood, and complexity cost to the user and get their buy-in.
   Do not silently expand scope for theoretical robustness.
+- Validate external input at system boundaries, then rely on types and established invariants internally instead of repeating equivalent checks.
+- Keep cohesive, single-use logic inline when it remains clear; extract helpers or abstractions only for reuse or a concrete readability benefit.
+- Use try/catch when it enables recovery or meaningful error handling; otherwise use the existing error propagation mechanism.
+- Before implementing unfamiliar functionality, search GitHub for relevant open-source implementations, compare approaches against the repository's needs, and use the findings to guide the implementation.
 - Express How in implementation code: how the required behavior is achieved.
 - Express What in test code: what behavior and outcomes are expected.
 - Keep code comments concise and, by default, limit them to Why not: why a plausible alternative is not used.
