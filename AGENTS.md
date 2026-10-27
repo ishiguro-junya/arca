@@ -50,6 +50,10 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
 - On macOS, request sandbox escalation on the first attempt for any shell command that launches a GUI application, directly or through automation, because sandboxed launches can fail during OS-service or GPU initialization.
 
+## Design
+
+- In slides and web apps, never decorate cards with accent-colored lines or bars along any edge, regardless of implementation technique.
+
 ## Slide
 
 - Let slide titles and body text wrap naturally within their text boxes, and reserve manual line breaks for meaningful paragraph or list boundaries.
