@@ -50,8 +50,11 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
 - On macOS, request sandbox escalation on the first attempt for any shell command that launches a GUI application, directly or through automation, because sandboxed launches can fail during OS-service or GPU initialization.
 
-## HTML Slide
+## Slide
 
+- Let slide titles and body text wrap naturally within their text boxes, and reserve manual line breaks for meaningful paragraph or list boundaries.
+- Keep words and phrases intact; if text does not fit, shorten the wording or adjust the text box or layout instead of forcing breaks inside a sentence for visual alignment.
+- Inspect the rendered slides for awkward wrapping and fix it before delivery.
 - When creating HTML slide decks with Claude Design, use a presentation view with slide-by-slide navigation instead of the default editor's artboard canvas.
 - For HTML slide decks, allow slide navigation only through previous/next buttons and keyboard controls.
 - Do not navigate when clicking the slide body or blank space, or when selecting or copying text.
