@@ -44,6 +44,7 @@
 - [anthropics/skills](https://github.com/anthropics/skills/)
 - [archify](https://github.com/tt-a1i/archify/tree/main/archify/)
 - [diagram-design](https://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design/)
+- [elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills/)
 - [eli5](https://github.com/anthropics/claude-plugins-community/tree/main/eli5/skills/eli5/)
 - [find-skills](https://github.com/vercel-labs/skills/tree/main/skills/find-skills/)
 - [gh-stack](https://github.com/github/gh-stack/tree/main/skills/gh-stack/)
@@ -51,6 +52,7 @@
 - [hallmark](https://github.com/Nutlope/hallmark/tree/main/skills/hallmark/)
 - [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills/tree/main/plugins/terraform/skills/)
 - [humanizer](https://github.com/blader/humanizer/)
+- [imozuru](https://github.com/MaryCache/imozuru/)
 - [mattpocock/skills](https://github.com/mattpocock/skills/)
 - [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese/)
 - [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop/)
@@ -60,6 +62,7 @@
 - [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp/)
 - [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop/)
 - [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills/)
+- [yomiyasu](https://github.com/nanaism/yomiyasu/)
 
 ### Cunstom Skill
 
