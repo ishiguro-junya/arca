@@ -66,7 +66,12 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Chrome
 
-- Always launch Chrome outside the agent sandbox from the first attempt, including headless launches and launches through automation; for shell commands, use `sandbox_permissions="require_escalated"`.
+- Launch Chrome and Chromium outside the agent sandbox from the first attempt.
+  Launching them inside the agent sandbox is prohibited, including probes and retries.
+- This rule includes headless launches, Playwright/Puppeteer automation, and browser launches by scripts or libraries that generate PDFs, images, or screenshots.
+- For shell commands, set `sandbox_permissions="require_escalated"` on the command that directly or indirectly launches the browser, including the parent script or package command.
+- If outside-sandbox execution is unavailable or denied, report the blocker and stop browser-dependent work.
+  Do not attempt an in-sandbox launch as a fallback.
 - Before operating a browser with a computer-use plugin, inspect the existing browser tabs and reuse a tab in the `🤖 AI Agents` tab group whenever possible.
 - Open a new tab in that group only when multiple pages must remain open, and create the group only when it does not already exist.
 
