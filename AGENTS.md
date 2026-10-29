@@ -53,8 +53,9 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 ## Design
 
 - In slides and web apps, never decorate cards with accent-colored lines or bars along any edge, regardless of implementation technique.
-- In web interfaces, give select controls the same height, typography, box sizing, and vertical padding as comparable input controls, and reserve enough horizontal space for the dropdown indicator and selected text.
-- Check select controls alongside other inputs in the rendered UI, including their alignment and text visibility at supported viewport sizes.
+- In web interfaces, give select controls enough height and vertical padding to avoid a cramped appearance and provide a comfortable interaction target, even when no comparable input controls are present, and reserve enough horizontal space for the dropdown indicator and selected text.
+- When comparable input controls exist, align select controls with their height, typography, box sizing, and vertical padding.
+- Check select controls in the rendered UI at supported viewport sizes, including their proportions, text visibility, and alignment with other inputs when present.
 
 ## Slide
 
