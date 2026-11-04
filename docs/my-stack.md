@@ -64,10 +64,6 @@
 - [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills/)
 - [yomiyasu](https://github.com/nanaism/yomiyasu/)
 
-### Cunstom Skill
-
-- [review-loop](../skills/review-loop/README.md)
-
 ## 🔌 MCP
 
 - [draw.io MCP](https://github.com/jgraph/drawio-mcp/)
