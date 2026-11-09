@@ -49,6 +49,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
 - On macOS, request sandbox escalation on the first attempt for any shell command that launches a GUI application, directly or through automation, because sandboxed launches can fail during OS-service or GPU initialization.
+- Do not enable a system-wide HTTPS proxy on macOS.
 
 ## Design
 
