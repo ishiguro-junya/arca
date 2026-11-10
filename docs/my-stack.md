@@ -52,6 +52,7 @@
 - [hallmark](https://github.com/Nutlope/hallmark/tree/main/skills/hallmark/)
 - [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills/tree/main/plugins/terraform/skills/)
 - [humanizer](https://github.com/blader/humanizer/)
+- [Impeccable](https://github.com/pbakaus/impeccable/)
 - [imozuru](https://github.com/MaryCache/imozuru/)
 - [mattpocock/skills](https://github.com/mattpocock/skills/)
 - [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese/)
