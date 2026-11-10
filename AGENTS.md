@@ -36,11 +36,6 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Before adding a persistent script or command definition, explain its purpose and why existing definitions or a direct command are insufficient, then obtain approval unless already given.
 - This approval requirement covers adding reusable definitions, not running one-off commands for the requested task.
 
-## Workspace
-
-- Use `tmp/` at the repository root for agent working files when `git check-ignore` confirms that it is ignored; otherwise use the system temporary directory.
-- This rule does not govern temporary files created by application code at runtime.
-
 ## ChatGPT (Codex)
 
 - Do not infer unstated user intent or expand the requested scope on your own.
