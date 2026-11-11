@@ -4,8 +4,12 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Task Workflow
 
-- Within the requested scope, continue through relevant verification and fixes for failures caused by the change until the requested outcome is complete or progress requires user input.
-- Reuse authorization already given in the conversation; ask only for unresolved decisions or actions that still require approval under the applicable rules.
+- Use the agreed outcome as the completion condition; complete the necessary changes and relevant verification, then stop without adding optional checks, alternatives, or deliverables.
+- Choose the minimum verification needed to check the requested behavior.
+  Before reporting that something works or is ready, verify the requested operation in the intended environment; partial tests or HTTP responses alone do not establish readiness.
+  Do not repeat verification the user has explicitly assigned elsewhere.
+- After a failed operation, use the failure evidence to choose the next step; do not repeat the same action, rebuild, reset, or restart without a concrete reason to expect improvement.
+- When the user changes urgency, gives a deadline, or asks to skip checks, immediately prioritize the usable requested result and defer optional checks, CI waits, polish, and cleanup while preserving explicit requirements.
 - When revising a plan, write a self-contained final design for a new participant with no conversation history, as though designed from the outset.
 - Include only information needed for implementation; omit revision history, superseded decisions, rejected alternatives, and change-relative wording.
 
@@ -41,8 +45,9 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## ChatGPT (Codex)
 
-- Do not infer unstated user intent or expand the requested scope on your own.
-- If the user's intent, requested scope, or authorization is uncertain, ask the user and obtain confirmation before taking the affected action.
+- Stay within the scope and authorization established by the whole conversation, reusing approvals already given.
+  A request for an explanation, investigation, plan, or mockup alone does not authorize implementation or configuration changes.
+- Ask only about unresolved decisions affecting the requested outcome, specifications, or authorization; use existing conventions for routine implementation choices and omit optional work without proposing or asking about it.
 - When GPT-6 Astra is the active model, do not use sub-agents unless the user explicitly authorizes their use, because sub-agents substantially increase token consumption.
 - Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
