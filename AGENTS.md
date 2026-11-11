@@ -11,6 +11,9 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Communication
 
+- During long-running work, provide concise progress updates roughly every five minutes and at meaningful milestones, such as findings, verification results, changes in approach, or blockers.
+- Explain what you are doing, what you have learned or are waiting for, and what comes next; when progress is unchanged, briefly explain why.
+- Continue working after each update without ending the turn or waiting for a reply, unless user input or approval is required.
 - In human-readable prose, write each sentence on its own line without wrapping it across lines.
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
 - Do not use the section sign (`U+00A7`) in human-readable prose.
