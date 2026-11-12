@@ -1,0 +1,13 @@
+pre-commit:
+  commands:
+    fmt:
+      run: mise run fmt-check
+    lint:
+      run: mise run lint
+    lint-md:
+      run: mise run lint-md
+
+pre-push:
+  commands:
+    test:
+      run: mise run test

@@ -1,0 +1,166 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "作成するリリースタグ（例: v1.0.0-alpha.1）"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  RELEASE_TAG: ${{ github.event.inputs.version }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4.2.5
+      - name: リリース入力を検証する
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF_NAME}" != "main" ]]; then
+            echo "Release workflowはmainブランチで実行してください。" >&2
+            exit 1
+          fi
+          if [[ ! "${RELEASE_TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|rc)\.[0-9]+)?$ ]]; then
+            echo "versionはv1.2.3またはv1.2.3-alpha.1形式で指定してください。" >&2
+            exit 1
+          fi
+          test -z "$(git status --short)"
+      - run: mise run fmt-check
+      - run: mise run test
+      - run: mise run lint
+      - run: mise run lint-md
+      - run: mise run build
+      - run: mise run release-check
+      - name: リリースタグを作成する
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force origin
+          current_commit="$(git rev-parse HEAD)"
+          if git rev-parse -q --verify "refs/tags/${RELEASE_TAG}" >/dev/null; then
+            tagged_commit="$(git rev-list -n 1 "${RELEASE_TAG}")"
+            if [[ "${tagged_commit}" != "${current_commit}" ]]; then
+              echo "${RELEASE_TAG}は別のコミットを指しています。" >&2
+              exit 1
+            fi
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "${RELEASE_TAG}" -m "Release ${RELEASE_TAG}"
+            git push origin "refs/tags/${RELEASE_TAG}"
+          fi
+      - run: goreleaser release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  verify-release:
+    needs: release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: 公開Releaseを検証する
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force origin
+          test "$(git rev-list -n 1 "${RELEASE_TAG}")" = "$(git rev-parse HEAD)"
+
+          expected_prerelease=false
+          if [[ "${RELEASE_TAG}" == *-* ]]; then
+            expected_prerelease=true
+          fi
+          gh release view "${RELEASE_TAG}" --json tagName,isDraft,isPrerelease |
+            jq -e --arg tag "${RELEASE_TAG}" --argjson prerelease "${expected_prerelease}" \
+              '.tagName == $tag and .isDraft == false and .isPrerelease == $prerelease'
+
+          assets="$(gh release view "${RELEASE_TAG}" --json assets --jq '.assets[].name')"
+          for asset in arca_darwin_arm64.tar.gz checksums.txt install.sh LICENSE README.md; do
+            grep -Fqx "${asset}" <<<"${assets}"
+          done
+
+          verify_dir="tmp/release-verification"
+          mkdir -p "${verify_dir}/archive"
+          base_url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${RELEASE_TAG}"
+          curl -fL --retry 5 --retry-all-errors "${base_url}/arca_darwin_arm64.tar.gz" -o "${verify_dir}/arca_darwin_arm64.tar.gz"
+          curl -fL --retry 5 --retry-all-errors "${base_url}/checksums.txt" -o "${verify_dir}/checksums.txt"
+          (cd "${verify_dir}" && shasum -a 256 -c checksums.txt)
+          tar -xzf "${verify_dir}/arca_darwin_arm64.tar.gz" -C "${verify_dir}/archive"
+
+          expected_version="${RELEASE_TAG#v}"
+          "${verify_dir}/archive/arca" version --json |
+            jq -e --arg version "${expected_version}" '.version == $version'
+          "${verify_dir}/archive/arca" update --check --json |
+            jq -e --arg version "${expected_version}" \
+              '.currentVersion == $version and .latestVersion == $version and .updateAvailable == false and .installMethod == "direct"'
+
+          if [[ "${expected_prerelease}" == false ]]; then
+            install_dir="${verify_dir}/install"
+            ARCA_INSTALL_DIR="${install_dir}" sh scripts/install.sh
+            "${install_dir}/arca" version --json |
+              jq -e --arg version "${expected_version}" '.version == $version'
+          fi
+
+  formula:
+    needs: verify-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Formulaを更新する
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="formula/${RELEASE_TAG}"
+          existing_pr="$(gh pr list --state open --head "${branch}" --json url --jq '.[0].url // empty')"
+          if git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
+            git switch --track -c "${branch}" "origin/${branch}"
+          else
+            git switch -c "${branch}"
+          fi
+          mkdir -p tmp/formula
+          gh release download "${RELEASE_TAG}" --pattern checksums.txt --dir tmp/formula
+          checksum="$(awk '$2 == "arca_darwin_arm64.tar.gz" { print $1 }' tmp/formula/checksums.txt)"
+          test -n "${checksum}"
+          version="${RELEASE_TAG#v}"
+          ruby -i -pe 'gsub(/version "[^"]+"/, "version \"'"${version}"'\""); gsub(/sha256 "[0-9a-f]+"/, "sha256 \"'"${checksum}"'\"")' Formula/arca.rb
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- Formula/arca.rb; then
+            git add Formula/arca.rb
+            git commit -m "chore(release): Formulaを${RELEASE_TAG}へ更新"
+          fi
+          brew tap ishiguro-junya/arca "${GITHUB_WORKSPACE}"
+          brew audit --strict ishiguro-junya/arca/arca
+          brew install ishiguro-junya/arca/arca
+          brew test ishiguro-junya/arca/arca
+          if git diff --quiet main...HEAD -- Formula/arca.rb; then
+            echo "Formulaは更新済みです。"
+            exit 0
+          fi
+          git push -u origin "${branch}"
+          if [[ -n "${existing_pr}" ]]; then
+            echo "Formula更新プルリクエストは作成済みです: ${existing_pr}"
+          else
+            gh pr create --base main --head "${branch}" --title "chore(release): Formulaを${RELEASE_TAG}へ更新" --body "Release ${RELEASE_TAG}の確定チェックサムをFormulaへ反映します。"
+          fi

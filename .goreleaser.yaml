@@ -1,0 +1,41 @@
+version: 2
+
+project_name: arca
+
+builds:
+  - id: arca
+    main: .
+    binary: arca
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X github.com/ishiguro-junya/arca/internal/buildinfo.Version={{ .Version }} -X github.com/ishiguro-junya/arca/internal/buildinfo.Commit={{ .Commit }} -X github.com/ishiguro-junya/arca/internal/buildinfo.BuildTime={{ .Date }}
+    goos:
+      - darwin
+    goarch:
+      - arm64
+
+archives:
+  - ids:
+      - arca
+    name_template: "arca_darwin_arm64"
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: checksums.txt
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-snapshot"
+
+changelog:
+  use: github
+
+release:
+  prerelease: auto
+  make_latest: "{{ if .Prerelease }}false{{ else }}true{{ end }}"
+  extra_files:
+    - glob: scripts/install.sh
+    - glob: LICENSE
+    - glob: README.md
