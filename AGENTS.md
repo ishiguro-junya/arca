@@ -17,6 +17,9 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 - During long-running work, provide concise progress updates roughly every five minutes and at meaningful milestones, such as findings, verification results, changes in approach, or blockers.
 - Explain what you are doing, what you have learned or are waiting for, and what comes next; when progress is unchanged, briefly explain why.
+- When you encounter a new problem, unexpected error, or unexpected verification failure, report it before taking further investigative or recovery actions.
+  Briefly explain what happened, its known impact on the task, and your next action; state when the impact is still unknown.
+  Do not wait for the next scheduled update or for the problem to be resolved.
 - Continue working after each update without ending the turn or waiting for a reply, unless user input or approval is required.
 - In human-readable prose, write each sentence on its own line without wrapping it across lines.
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
