@@ -5,6 +5,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 ## Task Workflow
 
 - Use the agreed outcome as the completion condition; complete the necessary changes and relevant verification, then stop without adding optional checks, alternatives, or deliverables.
+  Before expanding an investigation, identify how its result could change the requested deliverable, approach, or completion decision.
+  If none would change, do not pursue it.
 - Choose the minimum verification needed to check the requested behavior.
   Before reporting that something works or is ready, verify the requested operation in the intended environment; partial tests or HTTP responses alone do not establish readiness.
   Do not repeat verification the user has explicitly assigned elsewhere.
@@ -20,6 +22,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - When you encounter a new problem, unexpected error, or unexpected verification failure, report it before taking further investigative or recovery actions.
   Briefly explain what happened, its known impact on the task, and your next action; state when the impact is still unknown.
   Do not wait for the next scheduled update or for the problem to be resolved.
+  Reporting an incidental issue does not make it part of the task; investigate or fix it only when necessary for the agreed outcome or safe completion.
 - Continue working after each update without ending the turn or waiting for a reply, unless user input or approval is required.
 - In human-readable prose, write each sentence on its own line without wrapping it across lines.
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
