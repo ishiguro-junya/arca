@@ -48,7 +48,10 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Stay within the scope and authorization established by the whole conversation, reusing approvals already given.
   A request for an explanation, investigation, plan, or mockup alone does not authorize implementation or configuration changes.
 - Ask only about unresolved decisions affecting the requested outcome, specifications, or authorization; use existing conventions for routine implementation choices and omit optional work without proposing or asking about it.
-- When GPT-6 Astra is the active model, do not use sub-agents unless the user explicitly authorizes their use, because sub-agents substantially increase token consumption.
+- Keep design, code changes, and test creation for the same change in the main agent by default.
+- Use sub-agents without separate user approval when independent work, such as research, review, or verification, offers benefits that justify coordination and token costs.
+- Delegate implementation only when it can be completed and tested without frequent coordination with the main agent.
+  Assign the implementation and its tests to the same sub-agent, and keep final integration with the main agent.
 - Before browser automation or computer use, use a suitable purpose-built connector, MCP tool, plugin, skill, API, or CLI if available; inspect additional capabilities only when suitability is unclear.
 - Fall back to browser automation only when no purpose-built option can complete the task, and briefly explain why.
 - On macOS, request sandbox escalation on the first attempt for any shell command that launches a GUI application, directly or through automation, because sandboxed launches can fail during OS-service or GPU initialization.
