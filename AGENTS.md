@@ -41,6 +41,8 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Prefer `rg --files` for filename searches and `rg` for content searches, narrowing the scope with known paths or file extensions.
 - Limit output to the filenames or lines needed, and batch independent searches.
 - Avoid routine full-tree listings, full-file dumps, and disabling ignore rules; when no matches are found, check the search scope and exclusions before broadening the search.
+- Use verified file paths and resolve relative paths against the command's working directory.
+- Do not use shell special variables such as `path` or `PATH` as temporary variables.
 - When a repository's documentation and its existing code disagree, follow the conventions used in the existing code, and in your final reply point out each inconsistency you found between the documentation and the code.
 - Before adding complexity for a speculative or vanishingly unlikely race or security edge case, explain the concrete failure mode, likelihood, and complexity cost to the user and get their buy-in.
   Do not silently expand scope for theoretical robustness.
