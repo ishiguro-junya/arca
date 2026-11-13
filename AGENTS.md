@@ -10,10 +10,14 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Choose the minimum verification needed to check the requested behavior.
   Before reporting that something works or is ready, verify the requested operation in the intended environment; partial tests or HTTP responses alone do not establish readiness.
   Do not repeat verification the user has explicitly assigned elsewhere.
-- After a failed operation, use the failure evidence to choose the next step; do not repeat the same action, rebuild, reset, or restart without a concrete reason to expect improvement.
+- For likely transient failures, retry safe, short, lightweight operations up to twice with brief delays before treating the failure as a blocker.
+  Do not automatically retry operations that incur additional charges or could duplicate side effects when the outcome is unknown.
+  For other failures, use the evidence to choose the next step rather than repeating the same action without reason to expect improvement.
 - When the user changes urgency, gives a deadline, or asks to skip checks, immediately prioritize the usable requested result and defer optional checks, CI waits, polish, and cleanup while preserving explicit requirements.
 - When revising a plan, write a self-contained final design for a new participant with no conversation history, as though designed from the outset.
 - Include only information needed for implementation; omit revision history, superseded decisions, rejected alternatives, and change-relative wording.
+- When adding or revising AGENTS.md rules, use concise, actionable instructions with clear scope and required behavior.
+  Include only necessary conditions and exceptions, and avoid redundancy or conflicts with existing rules.
 
 ## Communication
 
