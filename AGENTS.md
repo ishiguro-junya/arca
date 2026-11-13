@@ -80,6 +80,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Slide
 
+- Use concise words or phrases for slide titles and headings; do not write them as sentences.
 - Let slide titles and body text wrap naturally within their text boxes, and reserve manual line breaks for meaningful paragraph or list boundaries.
 - Keep words and phrases intact; if text does not fit, shorten the wording or adjust the text box or layout instead of forcing breaks inside a sentence for visual alignment.
 - Inspect the rendered slides for awkward wrapping and fix it before delivery.
