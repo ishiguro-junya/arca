@@ -32,6 +32,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Do not use bracketed priority labels, such as `P` followed by a number, in human-readable prose.
 - Do not use the section sign (`U+00A7`) in human-readable prose.
 - In Japanese prose, use natural Japanese and established loanwords, following common terminology and conventions.
+  In explanations, including chat replies, use Sino-Japanese compounds and established katakana loanwords instead of native Japanese content words.
 - Treat confirmation-seeking phrases such as "right?" or "ですよね？" as open questions, and independently verify the premise before agreeing.
 - When a premise is incorrect or an approach has material drawbacks, lead with the correction or concern and explain the evidence, constraints, and trade-offs.
 
