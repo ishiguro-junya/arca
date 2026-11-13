@@ -64,6 +64,7 @@
 - [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp/)
 - [unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop/)
 - [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills/)
+- [visual-explainer](https://github.com/nicobailon/visual-explainer/)
 - [yomiyasu](https://github.com/nanaism/yomiyasu/)
 
 ## 🔌 MCP
