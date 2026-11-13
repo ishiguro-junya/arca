@@ -56,6 +56,7 @@
 - [Impeccable](https://github.com/pbakaus/impeccable/)
 - [imozuru](https://github.com/MaryCache/imozuru/)
 - [mattpocock/skills](https://github.com/mattpocock/skills/)
+- [modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance-src/)
 - [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese/)
 - [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop/)
 - [openai/skills](https://github.com/openai/skills/)
