@@ -119,6 +119,11 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
 - Run the required `gh` command directly; use `gh auth status` only if a failure indicates an authentication problem.
+- When creating or updating a pull request that changes screen content or user interactions, attach Before/After screenshots or videos demonstrating the main changes in the pull request body.
+- Capture Before from the implementation before the change and After from the current pull request implementation by running the application, using the same inputs, actions, and viewport size for comparison.
+- Use screenshots for static visual changes and videos for interactions, state transitions, or asynchronous behavior, and label the attachments Before/After.
+- Include brief reproduction steps and observed results alongside the attachments so reviewers can identify the changes and verify the expected behavior.
+- For new features or other changes without a meaningful Before, include After only.
 - To attach local images or videos to pull request bodies or comments, use `--attach` with `gh pr create`, `gh pr edit`, or `gh pr comment`, following the [official documentation](https://docs.github.com/ja/github-cli/github-cli/attaching-files-with-github-cli).
 - Do not use browser automation or computer use to upload these attachments unless the user explicitly requests it.
 - Do not merge a pull request unless the user explicitly requests it.
