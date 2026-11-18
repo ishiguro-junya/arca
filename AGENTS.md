@@ -117,7 +117,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 - Unless the user specifies another method, use `gh` from the outset for GitHub operations instead of the GitHub MCP.
   Run the required `gh` command directly; use `gh auth status` only if a failure indicates an authentication problem.
 - When creating or updating a pull request that changes screen content or user interactions, attach Before/After screenshots or videos demonstrating the main changes in the pull request body.
-  For new features or other changes without a meaningful Before, include After only.
+  For new features or other changes without a meaningful Before, present After only, without explaining why Before is absent or After is included.
 - Capture Before from the implementation before the change and After from the current pull request implementation by running the application, using the same inputs, actions, and viewport size for comparison.
 - Use screenshots for static visual changes and videos for interactions, state transitions, or asynchronous behavior, and label the attachments Before/After.
   Include brief reproduction steps and observed results alongside the attachments so reviewers can identify the changes and verify the expected behavior.
