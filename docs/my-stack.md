@@ -58,6 +58,7 @@
 - [mattpocock/skills](https://github.com/mattpocock/skills/)
 - [modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance-src/)
 - [natural-japanese](https://github.com/coji/natural-japanese/tree/main/skills/natural-japanese/)
+- [nihongo](https://github.com/AnIT012/nihongo/)
 - [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop/)
 - [openai/skills](https://github.com/openai/skills/)
 - [show-me](https://github.com/humanlayer/skills/tree/main/plugins/show-me/skills/show-me/)
