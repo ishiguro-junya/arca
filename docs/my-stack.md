@@ -61,6 +61,7 @@
 - [nihongo](https://github.com/AnIT012/nihongo/)
 - [no-ai-slop](https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop/)
 - [openai/skills](https://github.com/openai/skills/)
+- [security-audit](https://github.com/cloudflare/security-audit-skill/)
 - [show-me](https://github.com/humanlayer/skills/tree/main/plugins/show-me/skills/show-me/)
 - [skill-doctor](https://github.com/warpdotdev/common-skills/tree/main/.agents/skills/skill-doctor/)
 - [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp/)
