@@ -73,6 +73,7 @@ Follow explicit user instructions, then these guidelines, then skill guidance, s
 
 ## Design
 
+- When implementing dark mode, use black and neutral charcoal for backgrounds and surfaces, and avoid blue-tinted base colors.
 - In slides and web apps, never decorate cards with accent-colored lines or bars along any edge, regardless of implementation technique.
 - In web interfaces, use the existing design system's control dimensions for select controls; when no dimensions are defined, start with a height of approximately 40px for a standard-size select and adjust it to suit the design.
   Set the font size, line height, and vertical padding together so select controls have comfortable proportions and an adequate interaction target, even without comparable inputs, and reserve enough horizontal space for the dropdown indicator and selected text.
